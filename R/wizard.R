@@ -7,9 +7,10 @@
 wizard <- function(...){
     shiny::tagList(
         load_Wizard_js(),
+        load_Wizard_css(),
         load_wizard_utils(),
         htmltools::div(
-        class = "wizard",
+            class = "wizard",
             htmltools::div(
                 class = "wizard-step",
                 htmltools::h2("hello")

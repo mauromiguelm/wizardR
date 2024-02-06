@@ -13,6 +13,23 @@ load_Wizard_js <- function(){
   )
 }
 
+
+#' Load css necessary for the package.
+#'
+#' @description This function loads the necessary css for the package.
+#' @return A list of scripts.
+#' @keywords internal
+load_Wizard_css <- function(){
+  htmltools::htmlDependency(
+    name = "Wizard-js",
+    version = "1.9.9",
+    package = "wizardR",
+    src = "assets",
+    stylesheet = "main.css"
+  )
+}
+
+
 #' Load util wizard scripts necessary for the package.
 #'
 #' @description This function loads the necessary utils scripts for the package.
