@@ -1,4 +1,4 @@
-run:
+run: install
 	Rscript -e "shiny::runApp('inst/app/app.R')"
 
 install:

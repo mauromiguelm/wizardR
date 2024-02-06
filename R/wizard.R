@@ -6,7 +6,8 @@
 #' @export
 wizard <- function(...){
     shiny::tagList(
-        load_wizard(),
+        load_Wizard_js(),
+        load_wizard_utils(),
         htmltools::div(
         class = "wizard",
             htmltools::div(
