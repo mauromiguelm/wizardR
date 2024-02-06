@@ -1,109 +1,149 @@
-let wz_class = ".wizard";
+// create a binding object
+var binding = new Shiny.InputBinding();
 
-let args = {
-  wz_class: wz_class,
-  wz_nav_style: "dots", // dots, tabs, progress
-  wz_ori: "vertical",
-  buttons: true,
-  navigation: "all" // buttons, nav, all
-};
+$.extend(binding, {
 
-document.addEventListener("wz.ready", function (e) {
-  console.log("My body is ready");
+  find: function(scope) {
+     return $(scope).find(".wizard");
+  },
 
-  console.log(`↓ Target ↓`);
-  console.log(e.detail.target);
+  initialize: function(el){
+    let args = {
+      wz_class: ".wizard",
+      wz_nav_style: "dots", // dots, tabs, progress
+      wz_ori: "vertical",
+      buttons: true,
+      navigation: "all" // buttons, nav, all
+    }
+    
+    const wizard = new Wizard(args);
 
-  console.log(`↓ Elem ↓`);
-  console.log(e.detail.elem);
+    wizard.init();
+    
+  }
+
+  // getValue: function(el) {
+  //   ""
+  // },
+
+  // subscribe: function(el, callback) {
+
+  //     $(el).on('...', function(event){
+
+  //       callback();
+  //     });
+  // }
+
 });
 
-const wizard = new Wizard(args);
+Shiny.inputBindings.register(binding);
 
-wizard.init();
+// let wz_class = ".wizard";
 
-document.getElementById("btn_reset").onclick = function () {
-  wizard.reset();
-};
+// let args = {
+//   wz_class: wz_class,
+//   wz_nav_style: "dots", // dots, tabs, progress
+//   wz_ori: "vertical",
+//   buttons: true,
+//   navigation: "all" // buttons, nav, all
+// };
 
-document.getElementById("btn_lock").onclick = function () {
-  wizard.lock();
-};
+// document.addEventListener("wz.ready", function (e) {
+//   console.log("My body is ready");
 
-document.getElementById("btn_unlock").onclick = function () {
-  wizard.unlock();
-};
+//   console.log(`↓ Target ↓`);
+//   console.log(e.detail.target);
 
-let $wz_doc = document.querySelector(wz_class);
+//   console.log(`↓ Elem ↓`);
+//   console.log(e.detail.elem);
+// });
 
-$wz_doc.addEventListener("wz.btn.prev", function (e) {
-  console.log("Prev Step");
-});
+// const wizard = new Wizard(args);
 
-$wz_doc.addEventListener("wz.btn.next", function (e) {
-  console.log("Next Step");
-});
+// wizard.init();
 
-$wz_doc.addEventListener("wz.nav.forward", function (e) {
-  console.log("Forward Nav");
-});
+// document.getElementById("btn_reset").onclick = function () {
+//   wizard.reset();
+// };
 
-$wz_doc.addEventListener("wz.nav.backward", function (e) {
-  console.log("Backward Nav");
-});
+// document.getElementById("btn_lock").onclick = function () {
+//   wizard.lock();
+// };
 
-$wz_doc.addEventListener("wz.form.submit", function (e) {
-  alert("Form Submit");
-});
+// document.getElementById("btn_unlock").onclick = function () {
+//   wizard.unlock();
+// };
 
-$wz_doc.addEventListener("wz.end", function (e) {
-  alert("Wizard End");
-});
+// let $wz_doc = document.querySelector(wz_class);
 
-$wz_doc.addEventListener("wz.error", function (e) {
-    console.log(`↓ ID ↓`)
-    console.log(e.detail.id) // form_validaton
+// $wz_doc.addEventListener("wz.btn.prev", function (e) {
+//   console.log("Prev Step");
+// });
 
-    console.log(`↓ Message ↓`)
-    console.log(e.detail.msg) //options.i18n.form_validation
-});
+// $wz_doc.addEventListener("wz.btn.next", function (e) {
+//   console.log("Next Step");
+// });
 
-$wz_doc.addEventListener("wz.lock", function (e) {
-  alert("Wizard locked");
-});
+// $wz_doc.addEventListener("wz.nav.forward", function (e) {
+//   console.log("Forward Nav");
+// });
 
-$wz_doc.addEventListener("wz.unlock", function (e) {
-  alert("Wizard unlocked");
-});
+// $wz_doc.addEventListener("wz.nav.backward", function (e) {
+//   console.log("Backward Nav");
+// });
 
-$wz_doc.addEventListener("wz.reset", function (e) {
-  document.getElementById("formWizard").reset();
-  alert("Wizard has restarted");
-});
+// $wz_doc.addEventListener("wz.form.submit", function (e) {
+//   alert("Form Submit");
+// });
 
-$wz_doc.addEventListener("wz.update", function (e) {
-    alert("The Wizard has been updated !");
-    console.log(`↓ Target ↓`)
-    console.log(e.detail.target) // .wizard
+// $wz_doc.addEventListener("wz.end", function (e) {
+//   alert("Wizard End");
+// });
 
-    console.log(`↓ DOM Elem ↓`)
-    console.log(e.detail.elem) // DOM form#wizard.wizard.horizontal
-});
+// $wz_doc.addEventListener("wz.error", function (e) {
+//     console.log(`↓ ID ↓`)
+//     console.log(e.detail.id) // form_validaton
+
+//     console.log(`↓ Message ↓`)
+//     console.log(e.detail.msg) //options.i18n.form_validation
+// });
+
+// $wz_doc.addEventListener("wz.lock", function (e) {
+//   alert("Wizard locked");
+// });
+
+// $wz_doc.addEventListener("wz.unlock", function (e) {
+//   alert("Wizard unlocked");
+// });
+
+// $wz_doc.addEventListener("wz.reset", function (e) {
+//   document.getElementById("formWizard").reset();
+//   alert("Wizard has restarted");
+// });
+
+// $wz_doc.addEventListener("wz.update", function (e) {
+//     alert("The Wizard has been updated !");
+//     console.log(`↓ Target ↓`)
+//     console.log(e.detail.target) // .wizard
+
+//     console.log(`↓ DOM Elem ↓`)
+//     console.log(e.detail.elem) // DOM form#wizard.wizard.horizontal
+// });
 
 
-document.getElementById("btn_append").onclick = function () {
-  setStep(wizard);
-};
+// document.getElementById("btn_append").onclick = function () {
+//   setStep(wizard);
+// };
 
-function setStep(wizard) {
-  $html = `<div class="card card-body m-4 wizard-step" data-id="patata" data-title="Adrii"> <label class="question"> Embedded step </label> <input type="text" maxlength="100" name="patata" class="form-control required" placeholder="Embedded step"> </div>`;
+// function setStep(wizard) {
+//   $html = `<div class="card card-body m-4 wizard-step" data-id="patata" data-title="Adrii"> <label class="question"> Embedded step </label> <input type="text" maxlength="100" name="patata" class="form-control required" placeholder="Embedded step"> </div>`;
 
-  const wz = document.querySelector(wizard.wz_class);
-  const wz_content = wz.querySelector(wizard.wz_content);
+//   const wz = document.querySelector(wizard.wz_class);
+//   const wz_content = wz.querySelector(wizard.wz_content);
 
-  let target = wz_content.querySelector(`${wizard.wz_step}[data-step="2"]`);
+//   let target = wz_content.querySelector(`${wizard.wz_step}[data-step="2"]`);
 
-  target.insertAdjacentHTML("beforebegin", $html);
+//   target.insertAdjacentHTML("beforebegin", $html);
 
-  wizard.update();
-}
+//   wizard.update();
+// }
