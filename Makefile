@@ -1,4 +1,7 @@
-install: check
+run:
+	Rscript -e "shiny::runApp('inst/app/app.R')"
+
+install:
 	Rscript -e "devtools::install()"
 
 check: document
@@ -9,3 +12,4 @@ document:
 
 test:
 	Rscript -e "devtools::test()"
+
