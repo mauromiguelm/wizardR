@@ -33,4 +33,3 @@ wizard_step <- function(...){
         )
     )
 }
-
