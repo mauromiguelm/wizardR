@@ -28,16 +28,7 @@ load_Wizard_css <- function(){
     tags$head(
       tags$link(rel="stylesheet", type="text/css", href="wizard-css/main.css")
     ))
-
-  # htmltools::htmlDependency(
-  #   name = "Wizard-js",
-  #   version = "1.9.9",
-  #   package = "wizardR",
-  #   src = c(href="assets"),
-  #   stylesheet = "main.css"
-  # )
 }
-
 
 #' Load util wizard scripts necessary for the package.
 #'
