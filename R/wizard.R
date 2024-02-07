@@ -19,8 +19,12 @@ wizard <- function(...){
     ) # end of tagList
 }
 
-
-# add wizard step
+#' Add a step to the wizard
+#'
+#' @description Add a step to the wizard
+#'
+#' @return wizard step html
+#' @export
 wizard_step <- function(...){
     shiny::tagList(
         htmltools::div(
