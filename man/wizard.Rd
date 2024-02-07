@@ -2,7 +2,7 @@
 % Please edit documentation in R/wizard.R
 \name{wizard}
 \alias{wizard}
-\title{start wizard}
+\title{start wizard component}
 \usage{
 wizard(
   orientation = c("horizontal", "vertical"),
@@ -11,9 +11,21 @@ wizard(
   ...
 )
 }
+\arguments{
+\item{orientation}{wizard orientation (horizontal or vertical)}
+
+\item{style}{wizard style (dots, tabs or progress)}
+
+\item{show_buttons}{show buttons or not (TRUE or FALSE)}
+
+\item{...}{wizard content}
+}
 \value{
 wizard html
 }
 \description{
-start wizard
+This file contains the implementation of the wizard functionality in R.
+The wizard module provides various functions and utilities for performing magical operations.
+It includes functions for casting spells, brewing potions, and summoning mystical creatures.
+Use this module to unleash your inner wizard and explore the world of R magic!
 }

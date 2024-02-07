@@ -6,6 +6,9 @@
 \usage{
 wizard_step(...)
 }
+\arguments{
+\item{...}{step content}
+}
 \value{
 wizard step html
 }
