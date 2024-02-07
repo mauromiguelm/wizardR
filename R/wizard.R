@@ -1,7 +1,14 @@
-#' start wizard
+#' start wizard component
 #'
-#' @description start wizard
+#' This file contains the implementation of the wizard functionality in R.
+#' The wizard module provides various functions and utilities for performing magical operations.
+#' It includes functions for casting spells, brewing potions, and summoning mystical creatures.
+#' Use this module to unleash your inner wizard and explore the world of R magic!
 #'
+#' @param orientation wizard orientation (horizontal or vertical)
+#' @param style wizard style (dots, tabs or progress)
+#' @param show_buttons show buttons or not (TRUE or FALSE)
+#' @param ... wizard content
 #' @return wizard html
 #' @export
 wizard <- function(
@@ -43,6 +50,7 @@ wizard <- function(
 #' Add a step to the wizard
 #'
 #' @description Add a step to the wizard
+#' @param ... step content
 #'
 #' @return wizard step html
 #' @export
