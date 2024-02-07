@@ -3,8 +3,8 @@ Title: A step-by-step wizard for R
 Version: 0.0.0.9000
 Authors@R: 
     person("Mauro Miguel", "Masiero", , "mauromasiero@hotmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Create a wizard for R that aim to simplify complex tasks
+           comment = c(ORCID = ""))
+Description: Create a wizard for R that can simplify complex tasks
     by breaking them into smaller steps.
 License: `use_mit_license()`
 Encoding: UTF-8
