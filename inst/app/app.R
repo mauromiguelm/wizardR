@@ -7,6 +7,7 @@ ui <- fluidPage(
     wizard(
       orientation = "horizontal",
       style = "progress",
+      show_buttons = FALSE,
       wizard_step(
         h5("hello")
       ),

@@ -4,7 +4,12 @@
 \alias{wizard}
 \title{start wizard}
 \usage{
-wizard(...)
+wizard(
+  orientation = c("horizontal", "vertical"),
+  style = c("dots", "tabs", "progress"),
+  show_buttons = c(TRUE, FALSE),
+  ...
+)
 }
 \value{
 wizard html

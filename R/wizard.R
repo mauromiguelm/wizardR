@@ -7,11 +7,21 @@
 wizard <- function(
     orientation = c("horizontal", "vertical"),
     style = c("dots", "tabs", "progress"),
+    show_buttons = c(TRUE, FALSE),
     ...
     ){
     
     orientation <- match.arg(orientation)
     style <- match.arg(style)
+    
+    if(!is.logical(show_buttons)){
+        stop("show_buttons must be logical")
+    } 
+    
+    show_buttons <- switch(show_buttons,
+        "TRUE" = "true",
+        "FALSE" = "false"
+    )
 
     shiny::tagList(
         load_Wizard_js(),
@@ -21,6 +31,7 @@ wizard <- function(
             class = "wizard",
             "data-orientation" = orientation,
             "data-style" = style,
+            "data-show-buttons" = show_buttons,
             htmltools::div(
                 class = "wizard-content container",
                 ...
