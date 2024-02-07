@@ -9,11 +9,12 @@ $.extend(binding, {
 
   initialize: function(el){
     let wz_class = ".wizard";
+    let wz_ori = $(el).data("orientation");
     
     let args = {
       wz_class: wz_class,
       wz_nav_style: "dots", // dots, tabs, progress
-      wz_ori: "horizontal",
+      wz_ori: wz_ori, // hotironzal, vertical
       buttons: true,
       navigation: "all" // buttons, nav, all
     }

@@ -4,13 +4,20 @@
 #'
 #' @return wizard html
 #' @export
-wizard <- function(...){
+wizard <- function(
+    orientation = c("horizontal", "vertical"),
+    ...
+    ){
+    
+    orientation <- match.arg(orientation)
+    
     shiny::tagList(
         load_Wizard_js(),
         load_Wizard_css(),
         load_wizard_utils(),
         htmltools::div(
             class = "wizard",
+            "data-orientation" = orientation,
             htmltools::div(
                 class = "wizard-content container",
                 ...
