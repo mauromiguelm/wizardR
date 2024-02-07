@@ -3,11 +3,11 @@ library(wizardR)
 
 ui <- fluidPage(
   "wizardR demo",
-  theme = bslib::bs_theme(version = 5L),
+    theme = bslib::bs_theme(version = 5L),
     wizard(
       orientation = "horizontal",
       style = "progress",
-      show_buttons = FALSE,
+      show_buttons = TRUE,
       wizard_step(
         h5("hello")
       ),

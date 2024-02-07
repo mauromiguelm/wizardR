@@ -25,3 +25,8 @@ wizard(
     )
 )
 ```
+
+
+## Example
+
+You can find a demo example (with inputs and outputs) in `inst/app/App.R`. You can also run this demo `wizardR::run_app`.
