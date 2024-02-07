@@ -4,7 +4,7 @@ library(wizardR)
 ui <- fluidPage(
   "wizard",
   theme = bslib::bs_theme(version = 5L),
-  wizard()
+    wizard()
 )
 
 server <- \(input, output, session) {

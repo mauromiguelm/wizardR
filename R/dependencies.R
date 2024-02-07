@@ -20,13 +20,22 @@ load_Wizard_js <- function(){
 #' @return A list of scripts.
 #' @keywords internal
 load_Wizard_css <- function(){
-  htmltools::htmlDependency(
-    name = "Wizard-js",
-    version = "1.9.9",
-    package = "wizardR",
-    src = "assets",
-    stylesheet = "main.css"
+  addResourcePath(
+    prefix = 'wizard-css', directoryPath = system.file('assets', package='wizardR')
   )
+  tagList(
+
+    tags$head(
+      tags$link(rel="stylesheet", type="text/css", href="wizard-css/main.css")
+    ))
+
+  # htmltools::htmlDependency(
+  #   name = "Wizard-js",
+  #   version = "1.9.9",
+  #   package = "wizardR",
+  #   src = c(href="assets"),
+  #   stylesheet = "main.css"
+  # )
 }
 
 

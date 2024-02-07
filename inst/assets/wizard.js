@@ -8,10 +8,12 @@ $.extend(binding, {
   },
 
   initialize: function(el){
+    let wz_class = ".wizard";
+    
     let args = {
-      wz_class: ".wizard",
+      wz_class: wz_class,
       wz_nav_style: "dots", // dots, tabs, progress
-      wz_ori: "vertical",
+      wz_ori: "horizontal",
       buttons: true,
       navigation: "all" // buttons, nav, all
     }
