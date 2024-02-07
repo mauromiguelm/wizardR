@@ -20,13 +20,13 @@ load_Wizard_js <- function(){
 #' @return A list of scripts.
 #' @keywords internal
 load_Wizard_css <- function(){
-  addResourcePath(
+  shiny::addResourcePath(
     prefix = 'wizard-css', directoryPath = system.file('assets', package='wizardR')
   )
-  tagList(
+  shiny::tagList(
 
-    tags$head(
-      tags$link(rel="stylesheet", type="text/css", href="wizard-css/main.css")
+    shiny::tags$head(
+      shiny::tags$link(rel="stylesheet", type="text/css", href="wizard-css/main.css")
     ))
 }
 
