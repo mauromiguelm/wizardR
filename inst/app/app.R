@@ -12,7 +12,7 @@ ui <- fluidPage(
         h5("hello")
       ),
       wizard_step(
-        h5("world")
+        textOutput("text")
       ),
       wizard_step(
         plotOutput("plot")
@@ -24,6 +24,10 @@ server <- function(input, output, session) {
   
   output$plot <- renderPlot({
     plot(cars)
+  })
+
+  output$text <- renderText({
+    "hello world"
   })
 
 }
