@@ -6,6 +6,7 @@ ui <- fluidPage(
   theme = bslib::bs_theme(version = 5L),
     wizard(
       orientation = "horizontal",
+      style = "progress",
       wizard_step(
         h5("hello")
       ),

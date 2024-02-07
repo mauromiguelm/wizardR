@@ -6,11 +6,13 @@
 #' @export
 wizard <- function(
     orientation = c("horizontal", "vertical"),
+    style = c("dots", "tabs", "progress"),
     ...
     ){
     
     orientation <- match.arg(orientation)
-    
+    style <- match.arg(style)
+
     shiny::tagList(
         load_Wizard_js(),
         load_Wizard_css(),
@@ -18,6 +20,7 @@ wizard <- function(
         htmltools::div(
             class = "wizard",
             "data-orientation" = orientation,
+            "data-style" = style,
             htmltools::div(
                 class = "wizard-content container",
                 ...
