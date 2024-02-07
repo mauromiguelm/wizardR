@@ -1,18 +1,18 @@
 
-# wizardR: A simple UI to break down complex tasks into steps.
+# wizardR
 
 A user-friendly UI wizard that transforms complex tutorials or tasks into a sequence of steps.
 
 ## Installation
 
-```
+``` r
 devtools::install_github("mauromiguelm/wizardR)
-```R
+```
 
 
 ## Usage
 
-```
+``` r
 wizard(  
     # configuration of widget 
     orientation = "horizontal",
@@ -24,5 +24,4 @@ wizard(
         ... # html content or shiny outputs
     )
 )
-
-```R
+```
