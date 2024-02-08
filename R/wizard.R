@@ -66,7 +66,8 @@ wizard_step <- function(
         htmltools::div(
             ...,
             class = "wizard-step",
-            "data-title" = step_title
+            "data-title" = step_title,
+            session = session
         )
     )
 }

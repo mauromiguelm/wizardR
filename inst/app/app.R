@@ -11,12 +11,11 @@ ui <- fluidPage(
         shiny::h5("hello, this is step 0.")
       ),
       wizard_step(
-        step_title = "Text output",
-        textOutput("text")
-        
+        step_title = "Numeric input",
+        shiny::numericInput("number", "Select a number", value = 30, min = 20, max = 100)
       ),
       wizard_step(
-        step_title = "Plot output",
+        step_title = "Plot output from input",
         plotOutput("plot")
       ),
       wizard_step(
@@ -28,7 +27,8 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   output$plot <- renderPlot({
-    plot(cars)
+    # console log number with shinyjs
+    plot(1:input$number, rnorm(input$number))
   })
 
   output$text <- renderText({
