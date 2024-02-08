@@ -5,21 +5,21 @@
 #' It includes functions for casting spells, brewing potions, and summoning mystical creatures.
 #' Use this module to unleash your inner wizard and explore the world of R magic!
 #'
+#' @param ... wizard content
 #' @param orientation wizard orientation (horizontal or vertical)
 #' @param style wizard style (dots, tabs or progress)
 #' @param show_buttons show buttons or not (TRUE or FALSE)
-#' @param ... wizard content
 #' @return wizard html
 #' @export
 wizard <- function(
-    orientation = c("horizontal", "vertical"),
-    style = c("dots", "tabs", "progress"),
-    show_buttons = c(TRUE, FALSE),
-    ...
+    ...,
+    orientation = c("horizontal"),
+    style = c("progress"),
+    show_buttons = c(TRUE)
     ){
     
-    orientation <- match.arg(orientation)
-    style <- match.arg(style)
+    orientation <- match.arg(orientation, c("horizontal", "vertical"))
+    style <- match.arg(style, c("dots", "tabs", "progress"))
     
     if(!is.logical(show_buttons)){
         stop("show_buttons must be logical")

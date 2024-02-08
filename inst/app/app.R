@@ -5,9 +5,6 @@ ui <- fluidPage(
   "wizardR demo",
     theme = bslib::bs_theme(version = 5L),
     wizard(
-      orientation = "horizontal",
-      style = "progress",
-      show_buttons = TRUE,
       # start sequence of steps
       wizard_step(
         step_title = "Hello tag",
