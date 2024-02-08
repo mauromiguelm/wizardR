@@ -6,7 +6,7 @@ A user-friendly UI wizard that transforms complex tutorials or tasks into a sequ
 ## Installation
 
 ``` r
-devtools::install_github("mauromiguelm/wizardR)
+devtools::install_github("mauromiguelm/wizardR")
 ```
 
 
@@ -14,12 +14,7 @@ devtools::install_github("mauromiguelm/wizardR)
 
 ``` r
 wizard(  
-    # configuration of widget 
-    orientation = "horizontal",
-    style = "progress",
-    show_buttons = FALSE,
-    
-    # add one or multiple steps
+    # add one or more steps
     wizard_step(
         ... # html content or shiny outputs
     )
