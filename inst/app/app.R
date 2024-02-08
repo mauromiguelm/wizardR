@@ -22,7 +22,6 @@ ui <- fluidPage(
         plotOutput("plot")
       ),
       wizard_step(
-        step_title = NULL,
         shiny::h5("No step defined. This is the last step.")
       )
     )

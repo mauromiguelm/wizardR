@@ -58,9 +58,10 @@ wizard <- function(
 #' @return wizard step html
 #' @export
 wizard_step <- function(
+    ...,
     step_title = NULL,
-    session = shiny::getDefaultReactiveDomain(),
-    ...){
+    session = shiny::getDefaultReactiveDomain()
+    ){
     shiny::tagList(
         htmltools::div(
             class = "wizard-step",
