@@ -33,7 +33,7 @@ wizard <- function(
     shiny::tagList(
         load_Wizard_js(),
         load_Wizard_css(),
-        load_wizard_utils(),
+        load_main_js(),
         htmltools::div(
             class = "wizard",
             "data-orientation" = orientation,

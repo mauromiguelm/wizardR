@@ -24,7 +24,6 @@ load_Wizard_css <- function(){
     prefix = 'wizard-css', directoryPath = system.file('assets', package='wizardR')
   )
   shiny::tagList(
-
     shiny::tags$head(
       shiny::tags$link(rel="stylesheet", type="text/css", href="wizard-css/main.css")
     ))
@@ -35,12 +34,12 @@ load_Wizard_css <- function(){
 #' @description This function loads the necessary utils scripts for the package.
 #' @return A list of scripts.
 #' @keywords internal
-load_wizard_utils <- function(){
+load_main_js <- function(){
   htmltools::htmlDependency(
     name = "wizard",
     version = "5.0.2",
     package = "wizardR",
     src = "assets",
-    script = "wizard.js"
+    script = "main.js"
   )
 }

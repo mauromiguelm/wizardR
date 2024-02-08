@@ -5,20 +5,20 @@
 \title{start wizard component}
 \usage{
 wizard(
-  orientation = c("horizontal", "vertical"),
-  style = c("dots", "tabs", "progress"),
-  show_buttons = c(TRUE, FALSE),
-  ...
+  ...,
+  orientation = c("horizontal"),
+  style = c("progress"),
+  show_buttons = c(TRUE)
 )
 }
 \arguments{
+\item{...}{wizard content}
+
 \item{orientation}{wizard orientation (horizontal or vertical)}
 
 \item{style}{wizard style (dots, tabs or progress)}
 
 \item{show_buttons}{show buttons or not (TRUE or FALSE)}
-
-\item{...}{wizard content}
 }
 \value{
 wizard html

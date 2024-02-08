@@ -1,7 +1,7 @@
 // create a binding object
-var binding = new Shiny.InputBinding();
+var wizard = new Shiny.InputBinding();
 
-$.extend(binding, {
+$.extend(wizard, {
 
   find: function(scope) {
      return $(scope).find(".wizard");
@@ -28,4 +28,4 @@ $.extend(binding, {
   }
 });
 
-Shiny.inputBindings.register(binding);
+Shiny.inputBindings.register(wizard);
