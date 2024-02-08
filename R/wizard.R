@@ -64,9 +64,9 @@ wizard_step <- function(
     ){
     shiny::tagList(
         htmltools::div(
+            ...,
             class = "wizard-step",
-            "data-title" = step_title,
-            ...
+            "data-title" = step_title
         )
     )
 }
