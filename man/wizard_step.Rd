@@ -4,9 +4,17 @@
 \alias{wizard_step}
 \title{Add a step to the wizard}
 \usage{
-wizard_step(...)
+wizard_step(
+  step_title = NULL,
+  session = shiny::getDefaultReactiveDomain(),
+  ...
+)
 }
 \arguments{
+\item{step_title}{Title of the step (if it will be Step 1, Step 2, etc.)}
+
+\item{session}{shiny session}
+
 \item{...}{step content}
 }
 \value{

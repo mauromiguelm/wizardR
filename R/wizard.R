@@ -50,14 +50,21 @@ wizard <- function(
 #' Add a step to the wizard
 #'
 #' @description Add a step to the wizard
+#' 
+#' @param step_title Title of the step (if it will be Step 1, Step 2, etc.)
+#' @param session shiny session
 #' @param ... step content
 #'
 #' @return wizard step html
 #' @export
-wizard_step <- function(...){
+wizard_step <- function(
+    step_title = NULL,
+    session = shiny::getDefaultReactiveDomain(),
+    ...){
     shiny::tagList(
         htmltools::div(
             class = "wizard-step",
+            "data-title" = step_title,
             ...
         )
     )

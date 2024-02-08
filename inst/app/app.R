@@ -8,14 +8,22 @@ ui <- fluidPage(
       orientation = "horizontal",
       style = "progress",
       show_buttons = TRUE,
+      # start sequence of steps
       wizard_step(
-        h5("hello")
+        step_title = "Hello tag",
+        shiny::h5("hello")
       ),
       wizard_step(
+        step_title = "Text output",
         textOutput("text")
       ),
       wizard_step(
+        step_title = "Plot output",
         plotOutput("plot")
+      ),
+      wizard_step(
+        step_title = NULL,
+        shiny::h5("No step defined. This is the last step.")
       )
     )
 )
