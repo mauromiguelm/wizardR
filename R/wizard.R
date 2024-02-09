@@ -15,7 +15,8 @@ wizard <- function(
     ...,
     orientation = c("horizontal"),
     style = c("progress"),
-    show_buttons = c(TRUE)
+    show_buttons = c(TRUE),
+    id = NULL
     ){
     
     orientation <- match.arg(orientation, c("horizontal", "vertical"))
@@ -30,21 +31,20 @@ wizard <- function(
         "FALSE" = "false"
     )
 
-    shiny::tagList(
+    htmltools::div(
+        id = id,
+        class = "wizard",
+        "data-orientation" = orientation,
+        "data-style" = style,
+        "data-show-buttons" = show_buttons,
+        htmltools::div(
+            class = "wizard-content container",
+            ...
+        ), # end of wizard-content container
         load_Wizard_js(),
         load_Wizard_css(),
-        load_main_js(),
-        htmltools::div(
-            class = "wizard",
-            "data-orientation" = orientation,
-            "data-style" = style,
-            "data-show-buttons" = show_buttons,
-            htmltools::div(
-                class = "wizard-content container",
-                ...
-            ) # end of wizard-content container
-        ) # end of wizard
-    ) # end of tagList
+        load_main_js()
+    ) # end of wizard
 }
 
 #' Add a step to the wizard

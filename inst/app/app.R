@@ -5,6 +5,7 @@ ui <- fluidPage(
   "wizardR demo",
     theme = bslib::bs_theme(version = 5L),
     wizard(
+      id = "my_wizard",
       # start sequence of steps
       wizard_step(
         step_title = "Hello tag",
@@ -33,6 +34,10 @@ server <- function(input, output, session) {
 
   output$text <- renderText({
     "hello world"
+  })
+
+  observe({
+    print(input$my_wizard)
   })
 
 }
