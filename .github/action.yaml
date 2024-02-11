@@ -2,15 +2,14 @@ name: check-r-package
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "master" ]
   pull_request:
-    branches:
-      - main
-
+    branches: [ "master" ]
+    
 jobs:
   build:
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v4
     - uses: r-lib/actions/setup-r@v2
