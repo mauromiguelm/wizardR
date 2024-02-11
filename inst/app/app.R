@@ -28,16 +28,11 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   output$plot <- renderPlot({
-    # console log number with shinyjs
     plot(1:input$number, rnorm(input$number))
   })
 
   output$text <- renderText({
     "hello world"
-  })
-
-  observe({
-    print(input$my_wizard)
   })
 
 }

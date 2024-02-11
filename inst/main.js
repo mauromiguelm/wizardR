@@ -55,7 +55,8 @@ $.extend(wizard, {
         var nSteps = steps.length;
         var current = parseInt(steps.filter(".active").data("step"));
         var next = (current === nSteps) ? 0 : (current + 1);
-        $(el).data("active-step", next);
+        
+        $(el).attr("data-active-step", next);
 
         // Inform Shiny about visibility changes
         $(steps[current]).trigger("hidden");
@@ -72,7 +73,7 @@ $.extend(wizard, {
         var nSteps = steps.length;
         var current = steps.filter(".active").data("step");
         var next = (current === nSteps) ? 0 : (current + 1);
-        $(el).data("active-step", parseInt(current) - 1);
+        $(el).attr("data-active-step", parseInt(current) - 1);
 
         $(steps[current]).trigger("hidden");
         $(steps[next]).trigger("shown");
