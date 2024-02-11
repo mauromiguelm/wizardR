@@ -5,6 +5,7 @@ ui <- fluidPage(
   "wizardR demo",
     theme = bslib::bs_theme(version = 5L),
     wizard(
+      id = "my_wizard",
       # start sequence of steps
       wizard_step(
         step_title = "Hello tag",
@@ -27,7 +28,6 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   output$plot <- renderPlot({
-    # console log number with shinyjs
     plot(1:input$number, rnorm(input$number))
   })
 
