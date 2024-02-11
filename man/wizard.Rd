@@ -8,7 +8,8 @@ wizard(
   ...,
   orientation = c("horizontal"),
   style = c("progress"),
-  show_buttons = c(TRUE)
+  show_buttons = c(TRUE),
+  id = NULL
 )
 }
 \arguments{
