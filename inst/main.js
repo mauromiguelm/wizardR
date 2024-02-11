@@ -30,7 +30,7 @@ $.extend(wizard, {
   },
 
   getValue: function(el) {
-    return $(el).data("active-step");
+    // get value from method to server
   },
 
   setValue: function(el, value) {
@@ -87,7 +87,7 @@ $.extend(wizard, {
   },
 
   receiveMessage: function(el, data) {
-    // TODO: if you want an update method from the server, implement it here
+    // update method from the server
   },
 
 

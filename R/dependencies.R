@@ -8,20 +8,20 @@ load_Wizard_js <- function(){
     name = "Wizard-js",
     version = "1.9.9",
     package = "wizardR",
-    src = "assets",
+    src = "Wizard-JS",
     script = "wizard.min.js"
   )
 }
 
 
-#' Load css necessary for the package.
-#'
-#' @description This function loads the necessary css for the package.
-#' @return A list of scripts.
-#' @keywords internal
+# #' Load css necessary for the package.
+# #'
+# #' @description This function loads the necessary css for the package.
+# #' @return A list of scripts.
+# #' @keywords internal
 load_Wizard_css <- function(){
   shiny::addResourcePath(
-    prefix = 'wizard-css', directoryPath = system.file('assets', package='wizardR')
+    prefix = 'wizard-css', directoryPath = system.file('Wizard-JS', package='wizardR')
   )
   shiny::tagList(
     shiny::tags$head(
@@ -39,7 +39,7 @@ load_main_js <- function(){
     name = "wizard",
     version = "5.0.2",
     package = "wizardR",
-    src = "assets",
+    src = "",
     script = "main.js"
   )
 }
