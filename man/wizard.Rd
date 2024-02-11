@@ -20,6 +20,8 @@ wizard(
 \item{style}{wizard style (dots, tabs or progress)}
 
 \item{show_buttons}{show buttons or not (TRUE or FALSE)}
+
+\item{id}{wizard id}
 }
 \value{
 wizard html
