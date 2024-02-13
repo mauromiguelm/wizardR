@@ -9,6 +9,10 @@
 #' @param orientation wizard orientation (horizontal or vertical)
 #' @param style wizard style (dots, tabs or progress)
 #' @param show_buttons show buttons or not (TRUE or FALSE)
+#' @param id wizard id
+#' @param options A list of options. See the documentation of
+#'   'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
+#'   possible options.
 #' @return wizard html
 #' @export
 wizard <- function(
@@ -34,7 +38,7 @@ wizard <- function(
     
 
     # handle wizard-JS options
-    options <- modifyList(
+    options <- utils::modifyList(
         # default list
         list(
             "wz_ori" = orientation,
