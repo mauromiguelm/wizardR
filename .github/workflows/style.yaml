@@ -10,7 +10,7 @@ jobs:
   style:
     runs-on: ubuntu-latest
     env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_PAT: ${{ secrets.GHA_TOKEN }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
