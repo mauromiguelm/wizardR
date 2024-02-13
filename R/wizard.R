@@ -10,6 +10,7 @@
 #' @param style wizard style (dots, tabs or progress)
 #' @param show_buttons show buttons or not (TRUE or FALSE)
 #' @param id wizard id
+#' @param modal modal or not (TRUE or FALSE)
 #' @param options A list of options. See the documentation of
 #'   'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
 #'   possible options.
@@ -17,16 +18,18 @@
 #' @export
 wizard <- function(
     ...,
-    orientation = c("horizontal"),
-    style = c("progress"),
-    show_buttons = c(TRUE),
+    orientation = "horizontal",
+    style = "progress",
+    show_buttons = TRUE,
     id = NULL,
+    modal = TRUE,
     options = list()
     ){
-    
+        
     orientation <- match.arg(orientation, c("horizontal", "vertical"))
     style <- match.arg(style, c("dots", "tabs", "progress"))
-    
+    # check if show_buttons is logical
+
     if(!is.logical(show_buttons)){
         stop("show_buttons must be logical")
     } 
@@ -35,7 +38,6 @@ wizard <- function(
         "TRUE" = "true",
         "FALSE" = "false"
     )
-    
 
     # handle wizard-JS options
     options <- utils::modifyList(
@@ -48,7 +50,7 @@ wizard <- function(
         options
     )
 
-    htmltools::div(
+    ui <- htmltools::div(
         id = id,
         class = "wizard",
         "data-configuration" = jsonlite::toJSON(options, auto_unbox = TRUE),
@@ -56,10 +58,19 @@ wizard <- function(
             class = "wizard-content container",
             ...
         ), # end of wizard-content container
-        load_Wizard_js(),
-        load_Wizard_css(),
-        load_main_js()
+        load_wizard_js(),
+        load_wizard_utils()
     ) # end of wizard
+
+    if(modal){
+        ui <- shiny::modalDialog(
+            ui,
+            footer = NULL,
+            size = "xl"
+        )
+    }
+
+    return(ui)
 }
 
 #' Add a step to the wizard
