@@ -4,11 +4,11 @@ test_that("wizard returns the correct output", {
 
   testthat::expect_equal(htmltools::tagGetAttribute(wizard_output, "class"), "wizard")
 
-  testthat::expect_equal(htmltools::tagGetAttribute(wizard_output, "data-orientation"), "horizontal")
+  res <- htmltools::tagGetAttribute(wizard_output, "data-configuration")
 
-  testthat::expect_equal(htmltools::tagGetAttribute(wizard_output, "data-style"), "dots")
+  res <- jsonlite::parse_json(res)
 
-  testthat::expect_equal(htmltools::tagGetAttribute(wizard_output, "data-show-buttons"), "true")
+  testthat::expect_equal(res, list("wz_ori" = "horizontal", "wz_nav_style" = "dots", "buttons" = "true"))
 
   testthat::expect_equal(htmltools::tagGetAttribute(wizard_output, "id"), NULL)
   
