@@ -9,7 +9,8 @@ wizard(
   orientation = c("horizontal"),
   style = c("progress"),
   show_buttons = c(TRUE),
-  id = NULL
+  id = NULL,
+  options = list()
 )
 }
 \arguments{
@@ -22,6 +23,10 @@ wizard(
 \item{show_buttons}{show buttons or not (TRUE or FALSE)}
 
 \item{id}{wizard id}
+
+\item{options}{A list of options. See the documentation of
+'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
+possible options.}
 }
 \value{
 wizard html
