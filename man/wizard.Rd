@@ -6,10 +6,11 @@
 \usage{
 wizard(
   ...,
-  orientation = c("horizontal"),
-  style = c("progress"),
-  show_buttons = c(TRUE),
+  orientation = "horizontal",
+  style = "progress",
+  show_buttons = TRUE,
   id = NULL,
+  modal = TRUE,
   options = list()
 )
 }
@@ -23,6 +24,8 @@ wizard(
 \item{show_buttons}{show buttons or not (TRUE or FALSE)}
 
 \item{id}{wizard id}
+
+\item{modal}{modal or not (TRUE or FALSE)}
 
 \item{options}{A list of options. See the documentation of
 'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
