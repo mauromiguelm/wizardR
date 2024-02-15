@@ -97,7 +97,7 @@ wizard <- function(
             #TODO wizard is not subsribing to events when using bsutils::modal
             bsutils::modal(
                 id = id,
-                ui,
+                bsutils::modalBody(ui),
                 size = modal_size,
                 static_backdrop = FALSE #TODO file a github issue on static_backdrop
             )
@@ -128,4 +128,26 @@ wizard_step <- function(
         "data-title" = step_title,
         session = session
     )
+}
+
+# write roxygen 
+#' @name wizard_show
+#' @title Show wizard
+#' @description Show wizard
+#' @param id wizard id
+#' @param session shiny session
+#' @export
+wizard_show <- function(
+  id,
+  session = shiny::getDefaultReactiveDomain()
+) {
+  if(missing(id))
+    stop("Missing `id`")
+
+  session$sendCustomMessage(
+    "wizard-modal",
+    list(
+      id = id
+    )
+  )
 }

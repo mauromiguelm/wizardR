@@ -39,9 +39,8 @@ server <- function(input, output, session) {
 
   # show the wizard
   observeEvent(input$show_wizard, {
-    bsutils::modal_show("my_modal")
+    wizardR::wizard_show("my_modal")
   })
-
 }
 
 shinyApp(ui, server)

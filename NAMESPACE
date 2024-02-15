@@ -2,4 +2,5 @@
 
 export(run_app)
 export(wizard)
+export(wizard_show)
 export(wizard_step)
