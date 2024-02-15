@@ -16,7 +16,9 @@ test_that("wizard returns the correct output", {
 
   testthat::expect_equal(res, list("wz_ori" = "horizontal", "wz_nav_style" = "dots", "buttons" = "true"))
 
-  testthat::expect_equal(htmltools::tagGetAttribute(wizard_output, "id"), NULL)
+  
+  # this id is necessary for modal to work
+  testthat::expect_true(is.character(htmltools::tagGetAttribute(wizard_output, "id")))
 })
 
 test_that("wizard_step returns the correct output", {
