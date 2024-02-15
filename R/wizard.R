@@ -38,6 +38,7 @@ wizard <- function(
         stop("show_buttons must be logical")
     }
 
+    # TODO fix static_backdrop
     # check if static_backdrop is logical
     # if(!is.logical(static_backdrop)){
     #     stop("static_backdrop must be logical")
@@ -76,6 +77,7 @@ wizard <- function(
 
     ui <- htmltools::div(
         class = "wizard",
+        id = id,
         "data-configuration" = jsonlite::toJSON(options, auto_unbox = TRUE),
         "data-active-step" = "0",
         htmltools::div(
@@ -93,13 +95,11 @@ wizard <- function(
         }
         
         ui <- (
-
-            #TODO wizard is not subsribing to events when using bsutils::modal
             bsutils::modal(
-                id = id,
+                id = sprintf("wizard-modal-%s", id),
                 bsutils::modalBody(ui),
-                size = modal_size,
-                static_backdrop = FALSE #TODO file a github issue on static_backdrop
+                size = modal_size
+                # static_backdrop = FALSE #TODO file a github issue on static_backdrop
             )
         )
     }
@@ -141,8 +141,10 @@ wizard_show <- function(
   id,
   session = shiny::getDefaultReactiveDomain()
 ) {
-  if(missing(id))
-    stop("Missing `id`")
+  
+  if(missing(id)) stop("Missing `id`")
+
+  id <- sprintf("wizard-modal-%s", id)
 
   session$sendCustomMessage(
     "wizard-modal",
