@@ -25,14 +25,15 @@ wizard <- function(
     modal = TRUE,
     options = list()
     ){
-        
+    
+    # check inputs
     orientation <- match.arg(orientation, c("horizontal", "vertical"))
     style <- match.arg(style, c("dots", "tabs", "progress"))
+    
     # check if show_buttons is logical
-
     if(!is.logical(show_buttons)){
         stop("show_buttons must be logical")
-    } 
+    }
     
     show_buttons <- switch(show_buttons,
         "TRUE" = "true",
@@ -62,14 +63,15 @@ wizard <- function(
     ) # end of wizard
 
     if(modal){
-        if(is.null(id)) {
-            stop("If modal is TRUE, id must be provided")
+        # stop if id is null
+        if (is.null(id)) {
+            stop("id must be provided if modal is TRUE")
         }
+
         ui <- (
             bsutils::modal(
                 id = id,
                 ui,
-                # footer = NULL,
                 size = "xl"
             )
         )
