@@ -10,7 +10,8 @@
 #' @param style wizard style (dots, tabs or progress)
 #' @param show_buttons show buttons or not (TRUE or FALSE)
 #' @param id wizard id
-#' @param modal modal or not (TRUE or FALSE)
+#' @param modal modal 
+#' @param modal_size modal size (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)
 #' @param options A list of options. See the documentation of
 #'   'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
 #'   possible options.
@@ -23,7 +24,8 @@ wizard <- function(
     show_buttons = TRUE,
     id = NULL,
     modal = TRUE,
-    options = list()
+    options = list(),
+    modal_size = "xl"
     ){
     
     # check inputs
@@ -34,6 +36,21 @@ wizard <- function(
     if(!is.logical(show_buttons)){
         stop("show_buttons must be logical")
     }
+    
+    size = c(
+        "default",
+        "sm",
+        "lg",
+        "xl",
+        "fullscreen",
+        "fullscreen-sm-down",
+        "fullscreen-md-down",
+        "fullscreen-lg-down",
+        "fullscreen-xl-down",
+        "fullscreen-xxl-down"
+    )
+
+    modal_size <- match.arg(modal_size, size)
     
     show_buttons <- switch(show_buttons,
         "TRUE" = "true",
@@ -72,7 +89,7 @@ wizard <- function(
             bsutils::modal(
                 id = id,
                 ui,
-                size = "xl"
+                size = modal_size
             )
         )
     }
