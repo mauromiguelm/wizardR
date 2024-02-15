@@ -11,7 +11,8 @@ wizard(
   show_buttons = TRUE,
   id = NULL,
   modal = TRUE,
-  options = list()
+  options = list(),
+  modal_size = "xl"
 )
 }
 \arguments{
@@ -25,11 +26,15 @@ wizard(
 
 \item{id}{wizard id}
 
-\item{modal}{modal or not (TRUE or FALSE)}
+\item{modal}{modal}
 
 \item{options}{A list of options. See the documentation of
 'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
 possible options.}
+
+\item{modal_size}{modal size (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)}
+
+\item{static_backdrop}{close modal on when clicking outside of the modal}
 }
 \value{
 wizard html

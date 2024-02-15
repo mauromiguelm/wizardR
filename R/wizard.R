@@ -26,8 +26,7 @@ wizard <- function(
     id = NULL,
     modal = TRUE,
     options = list(),
-    modal_size = "xl",
-    static_backdrop = FALSE
+    modal_size = "xl"
     ){
     
     # check inputs
@@ -40,9 +39,9 @@ wizard <- function(
     }
 
     # check if static_backdrop is logical
-    if(!is.logical(static_backdrop)){
-        stop("static_backdrop must be logical")
-    }
+    # if(!is.logical(static_backdrop)){
+    #     stop("static_backdrop must be logical")
+    # }
     
     size = c(
         "default",
@@ -78,6 +77,7 @@ wizard <- function(
     ui <- htmltools::div(
         class = "wizard",
         "data-configuration" = jsonlite::toJSON(options, auto_unbox = TRUE),
+        "data-active-step" = "0",
         htmltools::div(
             class = "wizard-content container",
             ...
@@ -93,11 +93,13 @@ wizard <- function(
         }
         
         ui <- (
+
+            #TODO wizard is not subsribing to events when using bsutils::modal
             bsutils::modal(
                 id = id,
                 ui,
                 size = modal_size,
-                static_backdrop = static_backdrop
+                static_backdrop = FALSE #TODO file a github issue on static_backdrop
             )
         )
     }
