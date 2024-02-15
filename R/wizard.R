@@ -84,7 +84,7 @@ wizard <- function(
 
     ui <- htmltools::div(
         class = "wizard",
-        id = wiz_id, #TODO this id is necessary for modal to work, add test
+        id = wiz_id,
         "data-configuration" = jsonlite::toJSON(options, auto_unbox = TRUE),
         "data-active-step" = "0",
         htmltools::div(
