@@ -10,12 +10,11 @@ $.extend(wizard, {
   initialize: function(el){
     
     let args = $(el).data("configuration");
-    
+
     const wizard = new Wizard(args);
 
     wizard.init();
 
-    // TODO: populate active-step to get the right active step on load (better to do this in R)?
     return wizard;
   },
 
