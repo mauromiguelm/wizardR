@@ -4,8 +4,10 @@ library(wizardR)
 ui <- fluidPage(
   "wizardR demo",
     theme = bslib::bs_theme(version = 5L),
+    # add button
+    actionButton("show_wizard", "Show wizard"),
     wizard(
-      id = "my_wizard",
+      modal = FALSE,
       # start sequence of steps
       wizard_step(
         step_title = "Hello tag",
@@ -35,6 +37,10 @@ server <- function(input, output, session) {
     "hello world"
   })
 
+  # show the wizard
+  observeEvent(input$show_wizard, {
+    wizardR::wizard_show("my_modal")
+  })
 }
 
 shinyApp(ui, server)

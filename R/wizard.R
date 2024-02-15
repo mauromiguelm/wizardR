@@ -10,6 +10,8 @@
 #' @param style wizard style (dots, tabs or progress)
 #' @param show_buttons show buttons or not (TRUE or FALSE)
 #' @param id wizard id
+#' @param modal modal 
+#' @param modal_size modal size (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)
 #' @param options A list of options. See the documentation of
 #'   'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
 #'   possible options.
@@ -17,25 +19,56 @@
 #' @export
 wizard <- function(
     ...,
-    orientation = c("horizontal"),
-    style = c("progress"),
-    show_buttons = c(TRUE),
+    orientation = "horizontal",
+    style = "progress",
+    show_buttons = TRUE,
     id = NULL,
-    options = list()
+    modal = TRUE,
+    options = list(),
+    modal_size = "xl"
     ){
     
+    # check inputs
     orientation <- match.arg(orientation, c("horizontal", "vertical"))
     style <- match.arg(style, c("dots", "tabs", "progress"))
-    
+
+    # if ID is null, add a random id
+    if (is.null(id)) {
+        wiz_id <- sprintf("wizard-%s", paste(sample(c(letters, 1:10), 20), collapse = ""))
+    } else {
+        wiz_id <- id
+    }
+
+    # check if show_buttons is logical
     if(!is.logical(show_buttons)){
         stop("show_buttons must be logical")
-    } 
+    }
+
+    # TODO fix static_backdrop
+    # check if static_backdrop is logical
+    # if(!is.logical(static_backdrop)){
+    #     stop("static_backdrop must be logical")
+    # }
+    
+    size = c(
+        "default",
+        "sm",
+        "lg",
+        "xl",
+        "fullscreen",
+        "fullscreen-sm-down",
+        "fullscreen-md-down",
+        "fullscreen-lg-down",
+        "fullscreen-xl-down",
+        "fullscreen-xxl-down"
+    )
+
+    modal_size <- match.arg(modal_size, size)
     
     show_buttons <- switch(show_buttons,
         "TRUE" = "true",
         "FALSE" = "false"
     )
-    
 
     # handle wizard-JS options
     options <- utils::modifyList(
@@ -48,18 +81,36 @@ wizard <- function(
         options
     )
 
-    htmltools::div(
-        id = id,
+    ui <- htmltools::div(
         class = "wizard",
+        id = wiz_id,
         "data-configuration" = jsonlite::toJSON(options, auto_unbox = TRUE),
+        "data-active-step" = "0",
         htmltools::div(
             class = "wizard-content container",
             ...
         ), # end of wizard-content container
-        load_Wizard_js(),
-        load_Wizard_css(),
-        load_main_js()
+        load_wizard_js(),
+        load_wizard_utils()
     ) # end of wizard
+
+    if(modal){
+        # stop if id is null
+        if (is.null(id)) {
+            stop("id must be provided if modal is TRUE")
+        }
+        
+        ui <- (
+            bsutils::modal(
+                id = sprintf("wizard-modal-%s", id),
+                bsutils::modalBody(ui),
+                size = modal_size
+                # static_backdrop = FALSE #TODO file a github issue on static_backdrop
+            )
+        )
+    }
+
+    return(ui)
 }
 
 #' Add a step to the wizard
@@ -83,4 +134,28 @@ wizard_step <- function(
         "data-title" = step_title,
         session = session
     )
+}
+
+# write roxygen 
+#' @name wizard_show
+#' @title Show wizard
+#' @description Show wizard
+#' @param id wizard id
+#' @param session shiny session
+#' @export
+wizard_show <- function(
+  id,
+  session = shiny::getDefaultReactiveDomain()
+) {
+  
+  if(missing(id)) stop("Missing `id`")
+
+  id <- sprintf("wizard-modal-%s", id)
+
+  session$sendCustomMessage(
+    "wizard-modal",
+    list(
+      id = id
+    )
+  )
 }
