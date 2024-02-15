@@ -12,7 +12,6 @@
 #' @param id wizard id
 #' @param modal modal 
 #' @param modal_size modal size (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)
-#' @param static_backdrop close modal on when clicking outside of the modal
 #' @param options A list of options. See the documentation of
 #'   'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
 #'   possible options.

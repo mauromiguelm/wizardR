@@ -33,8 +33,6 @@ wizard(
 possible options.}
 
 \item{modal_size}{modal size (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)}
-
-\item{static_backdrop}{close modal on when clicking outside of the modal}
 }
 \value{
 wizard html

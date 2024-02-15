@@ -31,14 +31,14 @@ load_wizard_utils <- function(){
   shiny::tags$head(
     htmltools::htmlDependency(
       name = "wizard",
-      version = packageVersion("wizardR"),
+      version = utils::packageVersion("wizardR"),
       package = "wizardR",
       src = "",
       script = "main.js"
     ),
     htmltools::htmlDependency(
       name = "wizard-utils",
-      version = packageVersion("wizardR"),
+      version = utils::packageVersion("wizardR"),
       package = "wizardR",
       src = "",
       script = "utils.js"
