@@ -2,5 +2,10 @@
 
 // close modalDialog if button with class wizard-btn btn finish is clicked
 $(document).on('click', '.wizard-btn.btn.finish', function () {
-    $('.modalDialog').hide();
+    console.log("clicked finish button")
+    var modal = bootstrap.Modal.getOrCreateInstance(
+        document.getElementById("my_modal"),
+        {},
+    );
+    modal.hide();
 });

@@ -51,7 +51,6 @@ wizard <- function(
     )
 
     ui <- htmltools::div(
-        id = id,
         class = "wizard",
         "data-configuration" = jsonlite::toJSON(options, auto_unbox = TRUE),
         htmltools::div(
@@ -63,10 +62,16 @@ wizard <- function(
     ) # end of wizard
 
     if(modal){
-        ui <- shiny::modalDialog(
-            ui,
-            footer = NULL,
-            size = "xl"
+        if(is.null(id)) {
+            stop("If modal is TRUE, id must be provided")
+        }
+        ui <- (
+            bsutils::modal(
+                id = id,
+                ui,
+                # footer = NULL,
+                size = "xl"
+            )
         )
     }
 
