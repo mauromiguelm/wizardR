@@ -12,6 +12,7 @@
 #' @param id wizard id
 #' @param modal modal 
 #' @param modal_size modal size (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)
+#' @param static_backdrop close modal on when clicking outside of the modal
 #' @param options A list of options. See the documentation of
 #'   'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
 #'   possible options.
@@ -25,7 +26,8 @@ wizard <- function(
     id = NULL,
     modal = TRUE,
     options = list(),
-    modal_size = "xl"
+    modal_size = "xl",
+    static_backdrop = FALSE
     ){
     
     # check inputs
@@ -35,6 +37,11 @@ wizard <- function(
     # check if show_buttons is logical
     if(!is.logical(show_buttons)){
         stop("show_buttons must be logical")
+    }
+
+    # check if static_backdrop is logical
+    if(!is.logical(static_backdrop)){
+        stop("static_backdrop must be logical")
     }
     
     size = c(
@@ -84,12 +91,13 @@ wizard <- function(
         if (is.null(id)) {
             stop("id must be provided if modal is TRUE")
         }
-
+        
         ui <- (
             bsutils::modal(
                 id = id,
                 ui,
-                size = modal_size
+                size = modal_size,
+                static_backdrop = static_backdrop
             )
         )
     }
