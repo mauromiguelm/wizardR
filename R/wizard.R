@@ -32,7 +32,14 @@ wizard <- function(
     # check inputs
     orientation <- match.arg(orientation, c("horizontal", "vertical"))
     style <- match.arg(style, c("dots", "tabs", "progress"))
-    
+
+    # if ID is null, add a random id
+    if (is.null(id)) {
+        wiz_id <- sprintf("wizard-%s", paste(sample(c(letters, 1:10), 20), collapse = ""))
+    } else {
+        wiz_id <- id
+    }
+
     # check if show_buttons is logical
     if(!is.logical(show_buttons)){
         stop("show_buttons must be logical")
@@ -77,7 +84,7 @@ wizard <- function(
 
     ui <- htmltools::div(
         class = "wizard",
-        id = id,
+        id = wiz_id, #TODO this id is necessary for modal to work, add test
         "data-configuration" = jsonlite::toJSON(options, auto_unbox = TRUE),
         "data-active-step" = "0",
         htmltools::div(

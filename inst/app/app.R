@@ -7,7 +7,7 @@ ui <- fluidPage(
     # add button
     actionButton("show_wizard", "Show wizard"),
     wizard(
-      id = "my_modal",
+      modal = FALSE,
       # start sequence of steps
       wizard_step(
         step_title = "Hello tag",
