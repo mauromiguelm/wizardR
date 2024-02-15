@@ -11,7 +11,7 @@
 #' @param show_buttons show buttons or not (TRUE or FALSE)
 #' @param id wizard id
 #' @param modal modal 
-#' @param modal_size modal size (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)
+#' @param modal_size modal size in vw or bootstrap (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)
 #' @param options A list of options. See the documentation of
 #'   'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
 #'   possible options.
@@ -25,7 +25,7 @@ wizard <- function(
     id = NULL,
     modal = TRUE,
     options = list(),
-    modal_size = "xl"
+    width = 90
     ){
     
     # check inputs
@@ -50,7 +50,13 @@ wizard <- function(
     #     stop("static_backdrop must be logical")
     # }
     
-    size = c(
+    if(is.numeric(width)){
+        bs_size <- "default"
+        modal_width <- sprintf(".modal-default {--bs-modal-width: %svw;}", width)
+    } else {
+        bs_size <- width
+        modal_width <- NULL
+        size = c(
         "default",
         "sm",
         "lg",
@@ -61,9 +67,10 @@ wizard <- function(
         "fullscreen-lg-down",
         "fullscreen-xl-down",
         "fullscreen-xxl-down"
-    )
+        )
 
-    modal_size <- match.arg(modal_size, size)
+        bs_size <- match.arg(bs_size, size)
+    }
     
     show_buttons <- switch(show_buttons,
         "TRUE" = "true",
@@ -99,12 +106,18 @@ wizard <- function(
         if (is.null(id)) {
             stop("id must be provided if modal is TRUE")
         }
-        
+
         ui <- (
             bsutils::modal(
                 id = sprintf("wizard-modal-%s", id),
                 bsutils::modalBody(ui),
-                size = modal_size
+                size = bs_size,
+                  tags$head(
+                    tags$style(
+                        HTML(modal_width)
+                    )
+                )
+                
                 # static_backdrop = FALSE #TODO file a github issue on static_backdrop
             )
         )

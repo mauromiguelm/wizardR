@@ -2,7 +2,7 @@ run: install
 	Rscript -e "shiny::runApp('inst/app/app.R')"
 
 install:
-	Rscript -e "devtools::install()"
+	R CMD INSTALL .
 
 check: document
 	Rscript -e "devtools::check()"
