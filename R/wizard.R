@@ -107,7 +107,7 @@ wizard <- function(
     ) # end of wizard
 
     if(modal){
-        # stop if id is null
+        
         if (is.null(id)) {
             stop("id must be provided if modal is TRUE")
         }
@@ -154,7 +154,6 @@ wizard_step <- function(
     )
 }
 
-# write roxygen 
 #' @name wizard_show
 #' @title Show wizard
 #' @description Show wizard

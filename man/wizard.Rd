@@ -11,8 +11,9 @@ wizard(
   show_buttons = TRUE,
   id = NULL,
   modal = TRUE,
-  options = list(),
-  modal_size = "xl"
+  height = 60,
+  width = 90,
+  options = list()
 )
 }
 \arguments{
@@ -28,11 +29,13 @@ wizard(
 
 \item{modal}{modal}
 
+\item{height}{height in vh}
+
+\item{width}{width in vw or bootstrap size for modals (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)}
+
 \item{options}{A list of options. See the documentation of
 'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
 possible options.}
-
-\item{modal_size}{modal size (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)}
 }
 \value{
 wizard html
