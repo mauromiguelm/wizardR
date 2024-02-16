@@ -10,8 +10,10 @@
 #' @param style wizard style (dots, tabs or progress)
 #' @param show_buttons show buttons or not (TRUE or FALSE)
 #' @param id wizard id
-#' @param modal modal 
-#' @param modal_size modal size in vw or bootstrap (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)
+#' @param modal modal
+#' @param height height in vh
+#' @param width width in vw or bootstrap size for modals (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)
+#' @param options A list of options. See the documentation of 'Wizard-JS' (
 #' @param options A list of options. See the documentation of
 #'   'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
 #'   possible options.
@@ -24,8 +26,9 @@ wizard <- function(
     show_buttons = TRUE,
     id = NULL,
     modal = TRUE,
-    options = list(),
-    width = 90
+    height = 60,
+    width = 90,
+    options = list()
     ){
     
     # check inputs
@@ -95,6 +98,8 @@ wizard <- function(
         "data-active-step" = "0",
         htmltools::div(
             class = "wizard-content container",
+            # add height style
+            style = sprintf("height: %svh;", height),
             ...
         ), # end of wizard-content container
         load_wizard_js(),
