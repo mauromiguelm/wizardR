@@ -32,7 +32,25 @@ ui <- fluidPage(
         plotOutput("plot")
       ),
       wizard_step(
-        # make 4 base plots in bslib::cards within bslib::layout_columns()
+        bslib::layout_columns(
+          bslib::card(
+          full_screen = TRUE,
+          card_header("A filling plot"),
+          card_body(plotly_widget)
+        ),card(
+          full_screen = TRUE,
+          card_header("A filling plot"),
+          card_body(plotly_widget)
+        ),card(
+          full_screen = TRUE,
+          card_header("A filling plot"),
+          card_body(plotly_widget)
+        ),card(
+          full_screen = TRUE,
+          card_header("A filling plot"),
+          card_body(plotly_widget)
+        )
+        ),
         bslib::layout_columns(
           bslib::card(
           full_screen = TRUE,
