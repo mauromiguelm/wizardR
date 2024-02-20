@@ -91,19 +91,22 @@ wizard <- function(
         options
     )
 
+    content <- htmltools::div(
+        class = "wizard-content container",
+        # add height style
+        style = sprintf("height: %svh;", height),
+        ...
+    )
+
+    content <- htmltools::bindFillRole(content, container = TRUE)
+
     ui <- htmltools::div(
         class = "wizard",
         id = wiz_id,
         "data-configuration" = jsonlite::toJSON(options, auto_unbox = TRUE),
         "data-active-step" = "0",
-        htmltools::div(
-            class = "wizard-content container",
-            # add height style
-            style = sprintf("height: %svh;", height),
-            ...
-        ), # end of wizard-content container
-        load_wizard_js(),
-        load_wizard_utils()
+        content,
+        wizard_dependencies()
     ) # end of wizard
 
     if(modal){
@@ -146,12 +149,13 @@ wizard_step <- function(
     step_title = NULL,
     session = shiny::getDefaultReactiveDomain()
     ){
-    htmltools::div(
+    step <- htmltools::div(
         ...,
         class = "wizard-step",
         "data-title" = step_title,
         session = session
     )
+    htmltools::bindFillRole(step, item = TRUE, container = TRUE)
 }
 
 #' @name wizard_show
