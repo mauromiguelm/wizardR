@@ -3,7 +3,7 @@
 #' @description This function loads the necessary utils scripts for the package.
 #' @return A list of scripts.
 #' @keywords internal
-wizard_dependencies <- function(){
+wizard_dependencies <- function() {
   htmltools::htmlDependency(
     name = "wizard",
     version = utils::packageVersion("wizardR"),
