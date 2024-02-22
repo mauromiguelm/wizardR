@@ -1,0 +1,4 @@
+/* Fix an issue with CSS precedence in the wizard */
+.wizard .wizard-content .wizard-step.active:has(> .html-fill-item) {
+  display: flex;
+}
