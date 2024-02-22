@@ -104,10 +104,16 @@ wizard <- function(
     }
   }
 
+  # max-width fit-content if flex is TRUE
+  container_style <- ifelse(flex, "max-width: fit-content;", "")
+
+  # add height to container style
+  container_style <- sprintf("%sheight: %svh;", container_style, height)
+
   content <- htmltools::div(
     class = "wizard-content container",
     # add height style
-    style = sprintf("height: %svh;", height),
+    style = container_style,
     steps
   )
 
