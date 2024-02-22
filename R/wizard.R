@@ -135,9 +135,9 @@ wizard <- function(
         id = sprintf("wizard-modal-%s", id),
         bsutils::modalBody(ui),
         size = bs_size,
-        tags$head(
-          tags$style(
-            HTML(modal_width)
+        htmltools::tags$head(
+          htmltools::tags$style(
+            htmltools::HTML(modal_width)
           )
         )
 
