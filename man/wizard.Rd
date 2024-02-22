@@ -13,6 +13,7 @@ wizard(
   modal = TRUE,
   height = 60,
   width = 90,
+  flex = TRUE,
   options = list()
 )
 }
@@ -32,6 +33,8 @@ wizard(
 \item{height}{height in vh}
 
 \item{width}{width in vw or bootstrap size for modals (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)}
+
+\item{flex}{Convert the wizard to a flex container (TRUE or FALSE). flex will convert display: block to display: flex and add the htmltools::bindFillRole attribute to the wizard content.}
 
 \item{options}{A list of options. See the documentation of
 'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
