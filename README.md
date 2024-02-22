@@ -8,7 +8,7 @@ This package works as a wrapper of the <a href="https://github.com/AdrianVillama
 ## Installation
 
 ``` r
-devtools::install_github("mauromiguelm/wizardR")
+devtools::install_github("bigomics/wizardR")
 ```
 ## Usage
 
