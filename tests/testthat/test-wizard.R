@@ -31,3 +31,34 @@ test_that("wizard_step returns the correct output", {
 
   testthat::expect_equal(htmltools::tagGetAttribute(wizard_step_output, "data-title"), "Hello tag")
 })
+
+# check that flex is applied to the steps and the container
+test_that("wizard_step returns the correct output with flex", {
+  wizard_step_output <- wizardR::wizard_step(
+    step_title = "Hello tag",
+    shiny::h5("hello, this is step 0.",
+      modal = FALSE
+    )
+  )
+
+  wizard <- wizardR::wizard(
+    orientation = "horizontal",
+    style = "dots",
+    show_buttons = TRUE,
+    modal = FALSE,
+    flex = TRUE,
+    wizard_step_output
+  )
+
+  # get the class from children div
+  wizard_container <- wizard$children[[1]]
+  container_class <- htmltools::tagGetAttribute(wizard_container, "class")
+
+  expect_equal(container_class, "wizard-content container html-fill-container")
+
+  wizard_step <- wizard_container$children[[1]]
+  step_class <- htmltools::tagGetAttribute(wizard_step[[1]], "class")
+
+  expect_equal(step_class, "wizard-step html-fill-item html-fill-container")
+
+})
