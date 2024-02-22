@@ -33,7 +33,7 @@ wizard <- function(
   # check inputs
   orientation <- match.arg(orientation, c("horizontal", "vertical"))
   style <- match.arg(style, c("dots", "tabs", "progress"))
-  
+
   # if ID is null, add a random id
   if (is.null(id)) {
     wiz_id <- sprintf("wizard-%s", paste(sample(c(letters, 1:10), 20), collapse = ""))
@@ -47,7 +47,7 @@ wizard <- function(
   }
 
   # check if flex is logical
-  if(!is.logical(flex)){
+  if (!is.logical(flex)) {
     stop("flex must be logical")
   }
 
@@ -97,12 +97,11 @@ wizard <- function(
 
   steps <- list(...)
 
-  if(length(steps) > 0 && flex){
-    #iterate over steps and apply flex
-    for(i in 1:length(steps)){
+  if (length(steps) > 0 && flex) {
+    # iterate over steps and apply flex
+    for (i in 1:length(steps)) {
       steps[[i]] <- htmltools::bindFillRole(steps[[i]], item = TRUE, container = TRUE)
     }
-
   }
 
   content <- htmltools::div(
@@ -112,7 +111,7 @@ wizard <- function(
     steps
   )
 
-  if(flex){
+  if (flex) {
     content <- htmltools::bindFillRole(content, container = TRUE)
   }
 
@@ -162,9 +161,7 @@ wizard <- function(
 wizard_step <- function(
     ...,
     step_title = NULL,
-    session = shiny::getDefaultReactiveDomain()
-    ) {
-  
+    session = shiny::getDefaultReactiveDomain()) {
   htmltools::div(
     ...,
     class = "wizard-step",

@@ -60,7 +60,6 @@ test_that("wizard_step returns the correct output with flex", {
   step_class <- htmltools::tagGetAttribute(wizard_step[[1]], "class")
 
   testthat::expect_equal(step_class, "wizard-step html-fill-item html-fill-container")
-
 })
 
 
@@ -92,5 +91,4 @@ test_that("wizard_step returns the correct output with flex", {
   step_class <- htmltools::tagGetAttribute(wizard_step[[1]], "class")
 
   testthat::expect_equal(step_class, "wizard-step")
-
 })
