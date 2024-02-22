@@ -13,7 +13,7 @@
 #' @param modal modal
 #' @param height height in vh
 #' @param width width in vw or bootstrap size for modals (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)
-#' @param options A list of options. See the documentation of 'Wizard-JS' (
+#' @param flex Convert the wizard to a flex container (TRUE or FALSE). flex will convert display: block to display: flex and add the htmltools::bindFillRole attribute to the wizard content.
 #' @param options A list of options. See the documentation of
 #'   'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
 #'   possible options.
@@ -28,11 +28,12 @@ wizard <- function(
     modal = TRUE,
     height = 60,
     width = 90,
+    flex = TRUE,
     options = list()) {
   # check inputs
   orientation <- match.arg(orientation, c("horizontal", "vertical"))
   style <- match.arg(style, c("dots", "tabs", "progress"))
-
+  
   # if ID is null, add a random id
   if (is.null(id)) {
     wiz_id <- sprintf("wizard-%s", paste(sample(c(letters, 1:10), 20), collapse = ""))
@@ -43,6 +44,11 @@ wizard <- function(
   # check if show_buttons is logical
   if (!is.logical(show_buttons)) {
     stop("show_buttons must be logical")
+  }
+
+  # check if flex is logical
+  if(!is.logical(flex)){
+    stop("flex must be logical")
   }
 
   # TODO fix static_backdrop
@@ -89,14 +95,26 @@ wizard <- function(
     options
   )
 
+  steps <- list(...)
+
+  if(length(steps) > 0 && flex){
+    #iterate over steps and apply flex
+    for(i in 1:length(steps)){
+      steps[[i]] <- htmltools::bindFillRole(steps[[i]], item = TRUE, container = TRUE)
+    }
+
+  }
+
   content <- htmltools::div(
     class = "wizard-content container",
     # add height style
     style = sprintf("height: %svh;", height),
-    ...
+    steps
   )
 
-  content <- htmltools::bindFillRole(content, container = TRUE)
+  if(flex){
+    content <- htmltools::bindFillRole(content, container = TRUE)
+  }
 
   ui <- htmltools::div(
     class = "wizard",
@@ -144,14 +162,15 @@ wizard <- function(
 wizard_step <- function(
     ...,
     step_title = NULL,
-    session = shiny::getDefaultReactiveDomain()) {
-  step <- htmltools::div(
+    session = shiny::getDefaultReactiveDomain()
+    ) {
+  
+  htmltools::div(
     ...,
     class = "wizard-step",
     "data-title" = step_title,
     session = session
   )
-  htmltools::bindFillRole(step, item = TRUE, container = TRUE)
 }
 
 #' @name wizard_show
