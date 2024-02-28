@@ -12,7 +12,7 @@ test_that("wizard returns the correct output", {
 
   res <- jsonlite::parse_json(res)
 
-  testthat::expect_equal(res, list("wz_ori" = "horizontal", "wz_nav_style" = "dots", "buttons" = "true"))
+  testthat::expect_equal(res, list("wz_ori" = "horizontal", "wz_nav_style" = "dots", "buttons" = "true", "lock_start" = FALSE))
 
 
   # this id is necessary for modal to work
