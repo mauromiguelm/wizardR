@@ -45,15 +45,6 @@ $.extend(wizard, {
   },
   
   setValue: function(el, value) {
-    // TODO: for this to actually work, I think we'd need to include all the
-    // wizard's configuration. This would be a lot better/easier if wizardJS
-    // offered a method specifically for updating the current step (instead of
-    // this hacky way of doing it via re-initialization) 
-    //
-    // var w = this.initialize(el); 
-    // w.update({"current_step": value});
-    
-    // run lock function
     
     if (value === "lock") {
       this.lock();
