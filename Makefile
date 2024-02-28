@@ -13,5 +13,5 @@ document:
 test:
 	Rscript -e "devtools::test()"
 
-dbg: install
-	Rscript -e "shiny::runApp('inst/app/app-dbg.R')"
+dev: install
+	Rscript -e "shiny::runApp('inst/app/app-dev.R')"
