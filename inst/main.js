@@ -4,8 +4,6 @@ var wizard = new Shiny.InputBinding();
 $.extend(wizard, {
 
   find: function(scope) {
-    console.log("logging score");
-    console.log(scope);
      return $(scope).find(".wizard");
   },
 
@@ -15,14 +13,7 @@ $.extend(wizard, {
 
     const wizard = new Wizard(args);
 
-    console.log("initializing wizard")
-
-    console.log(wizard)
-
     wizard.init();
-
-    console.log("wizard initialized")
-    console.log(wizard)
 
     // expose wizard.lock function
     this.lock = function() {
@@ -37,7 +28,7 @@ $.extend(wizard, {
   },
 
   getValue: function(el) {
-    // get value from method to server
+    // get value from method to server if necessary
   },
 
   receiveMessage: function(el, value) {
