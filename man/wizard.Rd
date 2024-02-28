@@ -14,6 +14,7 @@ wizard(
   height = 60,
   width = 90,
   flex = TRUE,
+  lock_start = FALSE,
   options = list()
 )
 }
@@ -35,6 +36,8 @@ wizard(
 \item{width}{width in vw or bootstrap size for modals (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)}
 
 \item{flex}{Convert the wizard to a flex container (TRUE or FALSE). flex will convert display: block to display: flex and add the htmltools::bindFillRole attribute to the wizard content.}
+
+\item{lock_start}{lock the wizard at the start (TRUE or FALSE)}
 
 \item{options}{A list of options. See the documentation of
 'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for

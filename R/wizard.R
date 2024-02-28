@@ -14,6 +14,7 @@
 #' @param height height in vh
 #' @param width width in vw or bootstrap size for modals (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)
 #' @param flex Convert the wizard to a flex container (TRUE or FALSE). flex will convert display: block to display: flex and add the htmltools::bindFillRole attribute to the wizard content.
+#' @param lock_start lock the wizard at the start (TRUE or FALSE)
 #' @param options A list of options. See the documentation of
 #'   'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
 #'   possible options.
@@ -29,6 +30,7 @@ wizard <- function(
     height = 60,
     width = 90,
     flex = TRUE,
+    lock_start = FALSE,
     options = list()) {
   # check inputs
   orientation <- match.arg(orientation, c("horizontal", "vertical"))
@@ -49,6 +51,11 @@ wizard <- function(
   # check if flex is logical
   if (!is.logical(flex)) {
     stop("flex must be logical")
+  }
+
+  # check if lock_start is logical
+  if (!is.logical(lock_start)) {
+    stop("lock_start must be logical")
   }
 
   # TODO fix static_backdrop
@@ -90,7 +97,8 @@ wizard <- function(
     list(
       "wz_ori" = orientation,
       "wz_nav_style" = style,
-      "buttons" = show_buttons
+      "buttons" = show_buttons,
+      "lock_start" = lock_start
     ),
     options
   )

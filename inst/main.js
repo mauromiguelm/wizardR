@@ -24,6 +24,10 @@ $.extend(wizard, {
       wizard.unlock();
     }
 
+    if (args.lock_start) {
+      wizard.lock();
+    }
+
     return wizard;
   },
 
