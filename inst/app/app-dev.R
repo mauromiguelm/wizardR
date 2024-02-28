@@ -17,6 +17,7 @@ ui <- fluidPage(
     actionButton("show_wizard", "Show wizard"),
     wizard(
       modal = TRUE,
+      lock_start = TRUE,
       id = "my_modal",
       # start sequence of steps
       wizard_step(
