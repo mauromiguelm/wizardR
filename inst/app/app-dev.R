@@ -21,6 +21,9 @@ ui <- fluidPage(
       # start sequence of steps
       wizard_step(
         step_title = "Hello tag",
+        # add lock button
+        shiny::actionButton("lock_wizard", "Lock"),
+        shiny::actionButton("unlock_wizard", "unLock"),
         shiny::h5("hello, this is step 0.")
       ),
       wizard_step(
@@ -87,6 +90,14 @@ server <- function(input, output, session) {
   # show the wizard
   observeEvent(input$show_wizard, {
     wizardR::wizard_show("my_modal")
+  })
+
+  observeEvent(input$lock_wizard, {
+    wizardR::lock("my_modal")
+  })
+
+  observeEvent(input$unlock_wizard, {
+    wizardR::unlock("my_modal")
   })
 }
 

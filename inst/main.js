@@ -15,21 +15,35 @@ $.extend(wizard, {
 
     wizard.init();
 
+    // expose wizard.lock function
+    this.lock = function() {
+      wizard.lock();
+    }
+
+    this.unlock = function() {
+      wizard.unlock();
+    }
+
     return wizard;
   },
 
   getValue: function(el) {
-    // get value from method to server
+    // get value from method to server if necessary
   },
 
+  receiveMessage: function(el, value) {
+    this.setValue(el, value);
+  },
+  
   setValue: function(el, value) {
-    // TODO: for this to actually work, I think we'd need to include all the
-    // wizard's configuration. This would be a lot better/easier if wizardJS
-    // offered a method specifically for updating the current step (instead of
-    // this hacky way of doing it via re-initialization) 
-    //
-    //var w = this.initialize(el); 
-    //w.update({"current_step": value});
+    
+    if (value === "lock") {
+      this.lock();
+    }
+    
+    if (value === "unlock") {
+      this.unlock();
+    }
   },
 
   subscribe: function(el, callback) {
@@ -75,11 +89,6 @@ $.extend(wizard, {
   unsubscribe: function(el) {
     $(el).off("wz.update");
   },
-
-  receiveMessage: function(el, data) {
-    // update method from the server
-  },
-
 
 });
 
