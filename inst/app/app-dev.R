@@ -100,6 +100,11 @@ server <- function(input, output, session) {
   observeEvent(input$unlock_wizard, {
     wizardR::unlock("my_modal")
   })
+
+  # trigger on wizard finish
+  observeEvent(input$my_modal, {
+    print("`my_modal` wizard finished.")
+  })
 }
 
 shinyApp(ui, server)
