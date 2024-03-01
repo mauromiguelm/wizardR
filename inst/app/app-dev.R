@@ -24,16 +24,11 @@ ui <- fluidPage(
         step_title = "Hello tag",
         # add lock button
         shiny::actionButton("lock_wizard", "Lock"),
-        shiny::actionButton("unlock_wizard", "unLock"),
-        shiny::h5("hello, this is step 0.")
+        shiny::actionButton("unlock_wizard", "unLock")
       ),
       wizard_step(
         step_title = "Numeric input",
         shiny::numericInput("number", "Select a number", value = 30, min = 20, max = 100)
-      ),
-      wizard_step(
-        step_title = "Plot output from input",
-        plotOutput("plot")
       ),
       wizard_step(
         bslib::layout_columns(
@@ -99,6 +94,11 @@ server <- function(input, output, session) {
 
   observeEvent(input$unlock_wizard, {
     wizardR::unlock("my_modal")
+  })
+
+  # trigger on wizard finish
+  observeEvent(input$my_modal, {
+    print("`my_modal` wizard finished.")
   })
 }
 
