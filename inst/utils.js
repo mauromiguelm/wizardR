@@ -1,6 +1,6 @@
 $(document).on('click', '.wizard-btn.btn.finish', function () {
     
-    // get the modal id from the button that was clicked
+    //listen to close modal, best is to move this inputBinding
     var modalId = $(this).closest('.modal').attr('id');
     
     var modal = bootstrap.Modal.getOrCreateInstance(
@@ -9,6 +9,12 @@ $(document).on('click', '.wizard-btn.btn.finish', function () {
     );
 
     modal.hide();
+
+    //send message to shiny server, best is to move this to getValue
+    modalId = modalId.replace("wizard-modal-", "");
+
+    Shiny.setInputValue(modalId, modalId, {priority: "event"});
+    
 });
 
 Shiny.addCustomMessageHandler('wizard-modal', (msg) => {
