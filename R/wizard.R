@@ -141,7 +141,7 @@ wizard <- function(
     "data-configuration" = jsonlite::toJSON(options, auto_unbox = TRUE),
     "data-active-step" = "0",
     # set data title to the title of the first step
-    "data-title" = if (length(steps) > 0) steps[[1]]$`data-title` else NULL,
+    "data-title" = first_step_title,
     content,
     wizard_dependencies()
   ) # end of wizard
