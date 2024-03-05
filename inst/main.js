@@ -36,8 +36,8 @@ $.extend(wizard, {
   },
 
   getValue: function(el) {
-    // get value from method to server if necessary
-    cur_step = $(el).attr("data-active-step");
+    cur_step = $(el).attr("data-title");
+  
     return cur_step;
   },
 
@@ -68,12 +68,23 @@ $.extend(wizard, {
         var nSteps = steps.length;
         var current = parseInt(steps.filter(".active").data("step"));
         var next = (current === nSteps) ? 0 : (current + 1);
-        
-        $(el).attr("data-active-step", next);
+
+        $(el).attr("data-active-step", parseInt(next));
 
         // Inform Shiny about visibility changes
         $(steps[current]).trigger("hidden");
         $(steps[next]).trigger("shown");
+
+
+        var title = $(steps[next]).data("title");
+
+        title = title || null;
+
+        if ( title === null) {
+          title = "Step " + $(steps[next]).data("step");
+        }
+
+        $(el).attr("data-title", title);
 
         callback(false);
       });
@@ -85,11 +96,25 @@ $.extend(wizard, {
         var steps = $(el).find(".wizard-content .wizard-step");
         var nSteps = steps.length;
         var current = steps.filter(".active").data("step");
-        var next = (current === nSteps) ? 0 : (current + 1);
-        $(el).attr("data-active-step", parseInt(current) - 1);
+        var next = (current === nSteps) ? current : (current - 1);
+        $(el).attr("data-active-step", parseInt(next));
+        
 
         $(steps[current]).trigger("hidden");
         $(steps[next]).trigger("shown");
+        
+
+        // get data-title for next step
+        var title = $(steps[next]).data("title");
+
+        // if title is undefined, set it to "Step n"
+        title = title || null;
+        if (title === null) {
+          title = "Step " + $(steps[next]).data("step");
+        }
+
+        $(el).attr("data-title", title);
+
 
         callback(false);
       });
