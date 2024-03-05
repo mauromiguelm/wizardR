@@ -28,11 +28,20 @@ $.extend(wizard, {
       wizard.lock();
     }
 
+    this.current_step = function() {
+      return wizard.current_step();
+    }
+
     return wizard;
   },
 
   getValue: function(el) {
     // get value from method to server if necessary
+    console.log("getValue triggered")
+
+    cur_step = $(el).attr("data-active-step");
+
+    return cur_step;
   },
 
   receiveMessage: function(el, value) {
