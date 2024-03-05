@@ -38,10 +38,6 @@ $.extend(wizard, {
   getValue: function(el) {
     // get value from method to server if necessary
     cur_step = $(el).attr("data-active-step");
-
-    if (!cur_step) {
-    return "default";
-    }
     return cur_step;
   },
 
