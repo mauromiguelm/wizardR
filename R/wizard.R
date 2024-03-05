@@ -105,9 +105,13 @@ wizard <- function(
 
   steps <- list(...)
   
+  first_step_title <- "Step 0"
+  
   if (length(steps) > 0) {
     # get data-title with htmltools::htmlAttributes
+    
     first_step_title <- htmltools::tagGetAttribute(steps[[1]], "data-title")
+    
     first_step_title <- ifelse(is.null(first_step_title), "Step 0", first_step_title)
   }
 
