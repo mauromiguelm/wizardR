@@ -104,6 +104,12 @@ wizard <- function(
   )
 
   steps <- list(...)
+  
+  if (length(steps) > 0) {
+    # get data-title with htmltools::htmlAttributes
+    first_step_title <- htmltools::tagGetAttribute(steps[[1]], "data-title")
+    first_step_title <- ifelse(is.null(first_step_title), "Step 0", first_step_title)
+  }
 
   if (length(steps) > 0 && flex) {
     # iterate over steps and apply flex
@@ -134,6 +140,8 @@ wizard <- function(
     id = wiz_id,
     "data-configuration" = jsonlite::toJSON(options, auto_unbox = TRUE),
     "data-active-step" = "0",
+    # set data title to the title of the first step
+    "data-title" = if (length(steps) > 0) steps[[1]]$`data-title` else NULL,
     content,
     wizard_dependencies()
   ) # end of wizard
