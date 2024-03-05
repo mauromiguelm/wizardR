@@ -37,10 +37,11 @@ $.extend(wizard, {
 
   getValue: function(el) {
     // get value from method to server if necessary
-    console.log("getValue triggered")
-
     cur_step = $(el).attr("data-active-step");
 
+    if (!cur_step) {
+    return "default";
+    }
     return cur_step;
   },
 
@@ -96,6 +97,11 @@ $.extend(wizard, {
 
         callback(false);
       });
+    });
+
+    // add event listener for wz.end
+    el.addEventListener("wz.end", function(e) {
+      callback(false);
     });
   },
 

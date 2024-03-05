@@ -10,10 +10,10 @@ $(document).on('click', '.wizard-btn.btn.finish', function () {
 
     modal.hide();
 
-    // //send message to shiny server, best is to move this to getValue
-    // modalId = modalId.replace("wizard-modal-", "");
-
-    // Shiny.setInputValue(modalId, modalId, {priority: "event"});
+    //send message to shiny server, best is to move this to getValue
+    modalId = modalId.replace("wizard-modal-", "");
+    
+    Shiny.setInputValue(modalId, modalId, {priority: "event"});
     
 });
 
