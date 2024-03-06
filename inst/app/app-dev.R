@@ -98,7 +98,7 @@ server <- function(input, output, session) {
 
   # trigger on wizard finish
   observeEvent(input$my_modal, {
-    print("`my_modal` wizard finished.")
+    print(input$my_modal)
   })
 }
 
