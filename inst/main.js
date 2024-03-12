@@ -41,20 +41,23 @@ $.extend(wizard, {
     return cur_step;
   },
 
-  receiveMessage: function(el, value) {
-    this.setValue(el, value);
+  receiveMessage: function(el, msg) {
+
+    if (msg.type === "lock") {
+      this.lock();
+    } else if (msg.type === "unlock") {
+      this.unlock();
+    } else if (msg.type === "show") {
+      var modal = bootstrap.Modal.getOrCreateInstance(
+        document.getElementById('wizard-modal-' + el.id), {}
+      );
+      modal.show();
+    }
+    
   },
   
-  setValue: function(el, value) {
-    
-    if (value === "lock") {
-      this.lock();
-    }
-    
-    if (value === "unlock") {
-      this.unlock();
-    }
-  },
+  // TODO: implement update_wizard_step()
+  setValue: function(el, value) {},
 
   subscribe: function(el, callback) {
 

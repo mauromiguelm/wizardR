@@ -15,13 +15,3 @@ $(document).on('click', '.wizard-btn.btn.finish', function () {
     Shiny.setInputValue(modalId, "wizard_finished", {priority: "event"});
     
 });
-
-Shiny.addCustomMessageHandler('wizard-modal', (msg) => {
-    var modal = bootstrap.Modal.getOrCreateInstance(
-      document.getElementById(msg.id),
-      {},
-    );
-
-    modal.show();
-    
-  });

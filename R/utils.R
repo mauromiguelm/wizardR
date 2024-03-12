@@ -6,10 +6,10 @@
 #' @param session shiny session
 #' @export
 lock <- function(
-    id,
+    id, 
     session = shiny::getDefaultReactiveDomain()
     ){
-    session$sendInputMessage(id, "lock")
+    session$sendInputMessage(id, list(type = "lock"))
 }
 
 #' @title Unlock wizard
@@ -23,5 +23,5 @@ unlock <- function(
     id,
     session = shiny::getDefaultReactiveDomain()
     ){
-    session$sendInputMessage(id, "unlock")
+    session$sendInputMessage(id, list(type = "unlock"))
 }

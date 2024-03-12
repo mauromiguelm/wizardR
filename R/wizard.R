@@ -207,12 +207,5 @@ wizard_show <- function(
     session = shiny::getDefaultReactiveDomain()) {
   if (missing(id)) stop("Missing `id`")
 
-  id <- sprintf("wizard-modal-%s", id)
-
-  session$sendCustomMessage(
-    "wizard-modal",
-    list(
-      id = id
-    )
-  )
+  session$sendInputMessage(id, list(type = "show"))
 }

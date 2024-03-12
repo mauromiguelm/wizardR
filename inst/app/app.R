@@ -40,7 +40,7 @@ server <- function(input, output, session) {
 
   # show the wizard
   observeEvent(input$show_wizard, {
-    wizardR::wizard_show("my_modal")
+    wizard_show("my_modal")
   })
 }
 
