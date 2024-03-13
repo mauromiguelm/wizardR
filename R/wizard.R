@@ -169,8 +169,7 @@ wizard <- function(
     ui <- (
       bsutils::modal(
         id = sprintf("wizard-modal-%s", id),
-        static_backdrop = TRUE,
-
+        static_backdrop = static_backdrop,
         if(header){
           bsutils::modalHeader(
             title = header_title,
@@ -184,8 +183,6 @@ wizard <- function(
             htmltools::HTML(modal_width)
           )
         )
-
-        # static_backdrop = FALSE #TODO file a github issue on static_backdrop
       )
     )
   }
