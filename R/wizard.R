@@ -64,10 +64,10 @@ wizard <- function(
     stop("lock_start must be logical")
   }
 
-  
+
   # check if static_backdrop is logical
-  if(!is.logical(static_backdrop)){
-      stop("static_backdrop must be logical")
+  if (!is.logical(static_backdrop)) {
+    stop("static_backdrop must be logical")
   }
 
   # check if header is logical
@@ -170,7 +170,7 @@ wizard <- function(
       bsutils::modal(
         id = sprintf("wizard-modal-%s", id),
         static_backdrop = static_backdrop,
-        if(header){
+        if (header) {
           bsutils::modalHeader(
             title = header_title,
             close_button = TRUE
