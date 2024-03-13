@@ -8,7 +8,9 @@
 lock <- function(
     id,
     session = shiny::getDefaultReactiveDomain()) {
-  session$sendInputMessage(id, list(type = "lock"))
+      if (missing(id)) stop("Missing `id`")
+      session$sendInputMessage(id, list(type = "lock")
+      )
 }
 
 #' @title Unlock wizard
@@ -21,5 +23,23 @@ lock <- function(
 unlock <- function(
     id,
     session = shiny::getDefaultReactiveDomain()) {
-  session$sendInputMessage(id, list(type = "unlock"))
+      if (missing(id)) stop("Missing `id`")
+      session$sendInputMessage(id, list(type = "unlock")
+      )
+}
+
+#' @title Show wizard
+#' 
+#' @name wizard_show
+#' 
+#' @description Show wizard
+#' 
+#' @param id wizard id
+#' @param session shiny session
+#' @export
+wizard_show <- function(
+    id,
+    session = shiny::getDefaultReactiveDomain()) {
+      if (missing(id)) stop("Missing `id`")
+      session$sendInputMessage(id, list(type = "show"))
 }

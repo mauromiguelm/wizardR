@@ -211,17 +211,3 @@ wizard_step <- function(
     session = session
   )
 }
-
-#' @name wizard_show
-#' @title Show wizard
-#' @description Show wizard
-#' @param id wizard id
-#' @param session shiny session
-#' @export
-wizard_show <- function(
-    id,
-    session = shiny::getDefaultReactiveDomain()) {
-  if (missing(id)) stop("Missing `id`")
-
-  session$sendInputMessage(id, list(type = "show"))
-}
