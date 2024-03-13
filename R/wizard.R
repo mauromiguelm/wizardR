@@ -15,6 +15,9 @@
 #' @param width width in vw or bootstrap size for modals (default, sm, lg, xl, fullscreen, fullscreen-sm-down, fullscreen-md-down, fullscreen-lg-down, fullscreen-xl-down, fullscreen-xxl-down)
 #' @param flex Convert the wizard to a flex container (TRUE or FALSE). flex will convert display: block to display: flex and add the htmltools::bindFillRole attribute to the wizard content.
 #' @param lock_start lock the wizard at the start (TRUE or FALSE)
+#' @param header show header or not (TRUE or FALSE)
+#' @param header_title header title
+#' @param static_backdrop static backdrop or not (TRUE or FALSE)
 #' @param options A list of options. See the documentation of
 #'   'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
 #'   possible options.
@@ -27,10 +30,13 @@ wizard <- function(
     show_buttons = TRUE,
     id = NULL,
     modal = TRUE,
-    height = 60,
+    height = 50,
     width = 90,
     flex = TRUE,
     lock_start = FALSE,
+    header = TRUE,
+    header_title = "Wizard",
+    static_backdrop = TRUE,
     options = list()) {
   # check inputs
   orientation <- match.arg(orientation, c("horizontal", "vertical"))
@@ -58,11 +64,16 @@ wizard <- function(
     stop("lock_start must be logical")
   }
 
-  # TODO fix static_backdrop
+  
   # check if static_backdrop is logical
-  # if(!is.logical(static_backdrop)){
-  #     stop("static_backdrop must be logical")
-  # }
+  if(!is.logical(static_backdrop)){
+      stop("static_backdrop must be logical")
+  }
+
+  # check if header is logical
+  if (!is.logical(header)) {
+    stop("header must be logical")
+  }
 
   if (is.numeric(width)) {
     bs_size <- "default"
@@ -158,6 +169,13 @@ wizard <- function(
     ui <- (
       bsutils::modal(
         id = sprintf("wizard-modal-%s", id),
+        static_backdrop = static_backdrop,
+        if(header){
+          bsutils::modalHeader(
+            title = header_title,
+            close_button = TRUE
+          )
+        },
         bsutils::modalBody(ui),
         size = bs_size,
         htmltools::tags$head(
@@ -165,8 +183,6 @@ wizard <- function(
             htmltools::HTML(modal_width)
           )
         )
-
-        # static_backdrop = FALSE #TODO file a github issue on static_backdrop
       )
     )
   }
