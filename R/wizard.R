@@ -17,6 +17,7 @@
 #' @param lock_start lock the wizard at the start (TRUE or FALSE)
 #' @param header show header or not (TRUE or FALSE)
 #' @param header_title header title
+#' @param static_backdrop static backdrop or not (TRUE or FALSE)
 #' @param options A list of options. See the documentation of
 #'   'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
 #'   possible options.
@@ -35,6 +36,7 @@ wizard <- function(
     lock_start = FALSE,
     header = TRUE,
     header_title = "Wizard",
+    static_backdrop = TRUE,
     options = list()) {
   # check inputs
   orientation <- match.arg(orientation, c("horizontal", "vertical"))
@@ -62,11 +64,16 @@ wizard <- function(
     stop("lock_start must be logical")
   }
 
-  # TODO fix static_backdrop
+  
   # check if static_backdrop is logical
-  # if(!is.logical(static_backdrop)){
-  #     stop("static_backdrop must be logical")
-  # }
+  if(!is.logical(static_backdrop)){
+      stop("static_backdrop must be logical")
+  }
+
+  # check if header is logical
+  if (!is.logical(header)) {
+    stop("header must be logical")
+  }
 
   if (is.numeric(width)) {
     bs_size <- "default"
@@ -162,6 +169,8 @@ wizard <- function(
     ui <- (
       bsutils::modal(
         id = sprintf("wizard-modal-%s", id),
+        static_backdrop = TRUE,
+
         if(header){
           bsutils::modalHeader(
             title = header_title,
