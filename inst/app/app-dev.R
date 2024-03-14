@@ -28,6 +28,7 @@ ui <- fluidPage(
       ),
       wizard_step(
         step_title = "Numeric input",
+        shiny::actionButton("reset_wizard", "Reset"),
         shiny::numericInput("number", "Select a number", value = 30, min = 20, max = 100)
       ),
       wizard_step(
@@ -99,6 +100,11 @@ server <- function(input, output, session) {
   # trigger on wizard finish
   observeEvent(input$my_modal, {
     print(input$my_modal)
+  })
+
+  observeEvent(input$reset_wizard, {
+    print("reset wizard")
+    wizardR::reset("my_modal")
   })
 }
 

@@ -26,3 +26,14 @@ Shiny.addCustomMessageHandler('wizard-modal', (msg) => {
     modal.show();
 
   });
+
+
+Shiny.addCustomMessageHandler('wizard-modal-', (msg) => {
+  var modal = bootstrap.Modal.getOrCreateInstance(
+    document.getElementById(msg.id),
+    {},
+  );
+
+  modal.show();
+
+});

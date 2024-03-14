@@ -32,6 +32,15 @@ $.extend(wizard, {
       return wizard.current_step();
     }
 
+    this.lock = function() {
+      wizard.lock();
+    }
+
+    this.reset = function() {
+      wizard.reset();
+    }
+    
+
     return wizard;
   },
 
@@ -42,11 +51,15 @@ $.extend(wizard, {
   },
 
   receiveMessage: function(el, msg) {
+    console.log("received message", msg)
 
     if (msg.type === "lock") {
       this.lock();
     } else if (msg.type === "unlock") {
       this.unlock();
+    } else if (msg === "reset") {
+      console.log("resetting wizard");
+      this.reset();
     }
     //  else if (msg.type === "show") {
     //   var modal = bootstrap.Modal.getOrCreateInstance(

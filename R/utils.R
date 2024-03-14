@@ -51,3 +51,19 @@ wizard_show <- function(
     )
   )
 }
+
+#' @title Reset wizard
+#'
+#' Server-side function to reset the wizard.
+#'
+#' @param id wizard id
+#' @param session shiny session
+#' @export
+reset <- function(
+    id,
+    session = shiny::getDefaultReactiveDomain()
+    ){
+    if (missing(id)) stop("Missing `id`")
+    
+    session$sendInputMessage(id, "reset")
+}
