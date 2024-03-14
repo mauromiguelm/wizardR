@@ -64,10 +64,10 @@ wizard <- function(
     stop("lock_start must be logical")
   }
 
-  
+
   # check if static_backdrop is logical
-  if(!is.logical(static_backdrop)){
-      stop("static_backdrop must be logical")
+  if (!is.logical(static_backdrop)) {
+    stop("static_backdrop must be logical")
   }
 
   # check if header is logical
@@ -115,14 +115,14 @@ wizard <- function(
   )
 
   steps <- list(...)
-  
+
   first_step_title <- "Step 0"
-  
+
   if (length(steps) > 0) {
     # get data-title with htmltools::htmlAttributes
-    
+
     first_step_title <- htmltools::tagGetAttribute(steps[[1]], "data-title")
-    
+
     first_step_title <- ifelse(is.null(first_step_title), "Step 0", first_step_title)
   }
 
@@ -170,7 +170,7 @@ wizard <- function(
       bsutils::modal(
         id = sprintf("wizard-modal-%s", id),
         static_backdrop = static_backdrop,
-        if(header){
+        if (header) {
           bsutils::modalHeader(
             title = header_title,
             close_button = TRUE
@@ -209,26 +209,5 @@ wizard_step <- function(
     class = "wizard-step",
     "data-title" = step_title,
     session = session
-  )
-}
-
-#' @name wizard_show
-#' @title Show wizard
-#' @description Show wizard
-#' @param id wizard id
-#' @param session shiny session
-#' @export
-wizard_show <- function(
-    id,
-    session = shiny::getDefaultReactiveDomain()) {
-  if (missing(id)) stop("Missing `id`")
-
-  id <- sprintf("wizard-modal-%s", id)
-
-  session$sendCustomMessage(
-    "wizard-modal",
-    list(
-      id = id
-    )
   )
 }
