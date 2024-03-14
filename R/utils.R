@@ -42,6 +42,7 @@ wizard_show <- function(
 
   # session$sendInputMessage(id, list(type = "show"))
   # id <- sprintf("wizard-modal-%s", id)
+   id <- sprintf("wizard-modal-%s", id)
 
   session$sendCustomMessage(
     "wizard-modal",
