@@ -47,12 +47,13 @@ $.extend(wizard, {
       this.lock();
     } else if (msg.type === "unlock") {
       this.unlock();
-    } else if (msg.type === "show") {
-      var modal = bootstrap.Modal.getOrCreateInstance(
-        document.getElementById('wizard-modal-' + el.id), {}
-      );
-      modal.show();
     }
+    //  else if (msg.type === "show") {
+    //   var modal = bootstrap.Modal.getOrCreateInstance(
+    //     document.getElementById('wizard-modal-' + el.id), {}
+    //   );
+    //   modal.show();
+    // }
     
   },
   
