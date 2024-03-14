@@ -38,18 +38,15 @@ unlock <- function(
 wizard_show <- function(
     id,
     session = shiny::getDefaultReactiveDomain()) {
-      
-      if (missing(id)) stop("Missing `id`")
-      
-      # session$sendInputMessage(id, list(type = "show"))
-      # id <- sprintf("wizard-modal-%s", id)
+  if (missing(id)) stop("Missing `id`")
 
-      session$sendCustomMessage(
-        "wizard-modal",
-        list(
-          id = id
-        )
-      )
+  # session$sendInputMessage(id, list(type = "show"))
+  # id <- sprintf("wizard-modal-%s", id)
+
+  session$sendCustomMessage(
+    "wizard-modal",
+    list(
+      id = id
+    )
+  )
 }
-
-
