@@ -16,6 +16,7 @@ $(document).on('click', '.wizard-btn.btn.finish', function () {
     
 });
 
+
 Shiny.addCustomMessageHandler('wizard-modal', (msg) => {
     var modal = bootstrap.Modal.getOrCreateInstance(
       document.getElementById(msg.id),
@@ -23,5 +24,5 @@ Shiny.addCustomMessageHandler('wizard-modal', (msg) => {
     );
 
     modal.show();
-    
+
   });

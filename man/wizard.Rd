@@ -11,10 +11,13 @@ wizard(
   show_buttons = TRUE,
   id = NULL,
   modal = TRUE,
-  height = 60,
+  height = 50,
   width = 90,
   flex = TRUE,
   lock_start = FALSE,
+  header = TRUE,
+  header_title = "Wizard",
+  static_backdrop = TRUE,
   options = list()
 )
 }
@@ -38,6 +41,12 @@ wizard(
 \item{flex}{Convert the wizard to a flex container (TRUE or FALSE). flex will convert display: block to display: flex and add the htmltools::bindFillRole attribute to the wizard content.}
 
 \item{lock_start}{lock the wizard at the start (TRUE or FALSE)}
+
+\item{header}{show header or not (TRUE or FALSE)}
+
+\item{header_title}{header title}
+
+\item{static_backdrop}{static backdrop or not (TRUE or FALSE)}
 
 \item{options}{A list of options. See the documentation of
 'Wizard-JS' (<URL: https://github.com/AdrianVillamayor/Wizard-JS>) for
