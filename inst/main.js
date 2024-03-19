@@ -51,14 +51,11 @@ $.extend(wizard, {
   },
 
   receiveMessage: function(el, msg) {
-    console.log("received message", msg)
-
     if (msg.type === "lock") {
       this.lock();
     } else if (msg.type === "unlock") {
       this.unlock();
     } else if (msg === "reset") {
-      console.log("resetting wizard");
       this.reset();
     }
     //  else if (msg.type === "show") {
@@ -139,6 +136,31 @@ $.extend(wizard, {
 
     // add event listener for wz.end
     el.addEventListener("wz.end", function(e) {
+      callback(false);
+    });
+
+    // on wizard reset, set active step to 0
+    el.addEventListener("wz.reset", function(e) {
+      
+      var steps = $(el).find(".wizard-content .wizard-step");
+      var current = parseInt(steps.filter(".active").data("step"));
+      
+      $(el).attr("data-active-step", 0);
+      console.log("resetting wizard")
+
+      // inform shiny about step change
+      $(steps[current]).trigger("hidden");
+        $(steps[0]).trigger("shown");
+
+      // return title to first step
+      var steps = $(el).find(".wizard-content .wizard-step");
+      var title = $(steps[0]).data("title");
+      title = title || null;
+      if (title === null) {
+        title = "Step " + $(steps[0]).data("step");
+      }
+      $(el).attr("data-title", title);
+
       callback(false);
     });
   },
