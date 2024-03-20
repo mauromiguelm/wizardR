@@ -2,13 +2,6 @@ library(shiny)
 library(wizardR)
 library(bslib)
 library(shiny)
-library(htmltools)
-library(plotly)
-
-plotly_widget <- plotly::plot_ly(x = diamonds$cut) %>%
-  config(displayModeBar = FALSE) %>%
-  layout(margin = list(t = 0, b = 0, l = 0, r = 0))
-
 
 ui <- fluidPage(
   "wizardR demo",
@@ -27,50 +20,9 @@ ui <- fluidPage(
         shiny::actionButton("unlock_wizard", "unLock")
       ),
       wizard_step(
-        step_title = "Numeric input",
-        shiny::actionButton("reset_wizard", "Reset"),
-        shiny::numericInput("number", "Select a number", value = 30, min = 20, max = 100)
-      ),
-      wizard_step(
-        bslib::layout_columns(
-          bslib::card(
-          full_screen = TRUE,
-          card_header("A filling plot"),
-          card_body(plotly_widget)
-        ),card(
-          full_screen = TRUE,
-          card_header("A filling plot"),
-          card_body(plotly_widget)
-        ),card(
-          full_screen = TRUE,
-          card_header("A filling plot"),
-          card_body(plotly_widget)
-        ),card(
-          full_screen = TRUE,
-          card_header("A filling plot"),
-          card_body(plotly_widget)
+        step_title = "Try to lock wizard after shinyvalidate activated",
+        shiny::textInput("login_email", "Enter some text and lock wizard in step 1")
         )
-        ),
-        bslib::layout_columns(
-          bslib::card(
-          full_screen = TRUE,
-          card_header("A filling plot"),
-          card_body(plotly_widget)
-        ),card(
-          full_screen = TRUE,
-          card_header("A filling plot"),
-          card_body(plotly_widget)
-        ),card(
-          full_screen = TRUE,
-          card_header("A filling plot"),
-          card_body(plotly_widget)
-        ),card(
-          full_screen = TRUE,
-          card_header("A filling plot"),
-          card_body(plotly_widget)
-        )
-        )
-      )
     )
 )
 
@@ -105,6 +57,17 @@ server <- function(input, output, session) {
   observeEvent(input$reset_wizard, {
     print("reset wizard")
     wizardR::reset("my_modal")
+  })
+
+  observeEvent(input$login_email, {
+    # validate text input
+    req(input$login_email)
+    print("text input changed")
+    print(input$login_email)
+    iv <- shinyvalidate::InputValidator$new()
+    iv$add_rule("login_email", shinyvalidate::sv_required())
+    iv$add_rule("login_email", shinyvalidate::sv_email())
+    iv$enable()
   })
 }
 
