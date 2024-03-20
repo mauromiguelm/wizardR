@@ -15,6 +15,11 @@ ui <- fluidPage(
     theme = bslib::bs_theme(version = 5L),
     # add button
     actionButton("show_wizard", "Show wizard"),
+    shiny::actionButton("run_shinyalert", "shinyalert"),
+    shiny::actionButton("run_shinywidgets", "shinywidgets"),
+    shiny::actionButton("run_modaldialog", "shiny::modaldialog"),
+    shiny::actionButton("run_bsutils", "bsutils"),
+    bsutils::modal("bsutils_modal", plotly_widget),
     wizard(
       modal = TRUE,
       lock_start = TRUE,
@@ -25,6 +30,7 @@ ui <- fluidPage(
         # add lock button
         shiny::actionButton("lock_wizard", "Lock"),
         shiny::actionButton("unlock_wizard", "unLock")
+
       ),
       wizard_step(
         step_title = "Numeric input",
@@ -105,6 +111,29 @@ server <- function(input, output, session) {
   observeEvent(input$reset_wizard, {
     print("reset wizard")
     wizardR::reset("my_modal")
+  })
+
+  observeEvent(input$run_shinyalert, {
+    shinyalert::shinyalert("Hello", "This is a shinyalert")
+  })
+
+  observeEvent(input$run_modaldialog, {
+     showModal(modalDialog(
+        title = "Important message",
+        "This is an important message!"
+      ))
+  })
+
+  observeEvent(input$run_bsutils, {
+    bsutils::modal_show("bsutils_modal")
+  })
+
+  observeEvent(input$run_shinywidgets, {
+    shinyWidgets::show_alert(
+      title = "Success !!",
+      text = "All in order",
+      type = "success"
+    )
   })
 }
 
