@@ -98,6 +98,13 @@ $.extend(wizard, {
         $(steps[current]).trigger("hidden");
         $(steps[next]).trigger("shown");
 
+        // if next step is the last step, hide button
+        if (next === nSteps) {
+          document.querySelector('.wizard-buttons button.next').style.display = 'none';
+        } else {
+          document.querySelector('.wizard-buttons button.next').style.display = 'block';
+        }
+
         var title = $(steps[next]).data("title");
 
         title = title || null;
@@ -120,7 +127,12 @@ $.extend(wizard, {
         var current = steps.filter(".active").data("step");
         var next = (current === 0 ) ? current : (current - 1);
         $(el).attr("data-active-step", parseInt(next));
-        
+
+        if (next === nSteps) {
+          document.querySelector('.wizard-buttons button.next').style.display = 'none';
+        } else {
+          document.querySelector('.wizard-buttons button.next').style.display = 'block';
+        }
 
         $(steps[current]).trigger("hidden");
         $(steps[next]).trigger("shown");
