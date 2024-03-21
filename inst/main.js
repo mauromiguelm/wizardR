@@ -166,7 +166,6 @@ $.extend(wizard, {
       var current = parseInt(steps.filter(".active").data("step"));
       
       $(el).attr("data-active-step", 0);
-      console.log("resetting wizard")
 
       // inform shiny about step change
       $(steps[current]).trigger("hidden");
