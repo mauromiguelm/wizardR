@@ -90,7 +90,7 @@ $.extend(wizard, {
         var steps = $(el).find(".wizard-content .wizard-step");
         var nSteps = steps.length;
         var current = parseInt(steps.filter(".active").data("step"));
-        var next = (current === nSteps) ? 0 : (current + 1);
+        var next = (current === nSteps) ? current : (current + 1);
 
         $(el).attr("data-active-step", parseInt(next));
 
