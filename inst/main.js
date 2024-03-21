@@ -88,7 +88,7 @@ $.extend(wizard, {
         // unfortunately we need to manually find the current step, and store it
         // in the DOM, so that we can retrieve it later (in getValue())
         var steps = $(el).find(".wizard-content .wizard-step");
-        var nSteps = steps.length;
+        var nSteps = steps.length-1;
         var current = parseInt(steps.filter(".active").data("step"));
         var next = (current === nSteps) ? current : (current + 1);
 
@@ -97,7 +97,6 @@ $.extend(wizard, {
         // Inform Shiny about visibility changes
         $(steps[current]).trigger("hidden");
         $(steps[next]).trigger("shown");
-
 
         var title = $(steps[next]).data("title");
 
@@ -117,9 +116,9 @@ $.extend(wizard, {
     ["wz.btn.prev", "wz.nav.backward"].forEach(function(evt) {
       el.addEventListener(evt, function(e) {
         var steps = $(el).find(".wizard-content .wizard-step");
-        var nSteps = steps.length;
+        var nSteps = steps.length-1;
         var current = steps.filter(".active").data("step");
-        var next = (current === nSteps) ? current : (current - 1);
+        var next = (current === 0 ) ? current : (current - 1);
         $(el).attr("data-active-step", parseInt(next));
         
 
