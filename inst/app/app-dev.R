@@ -8,6 +8,7 @@ ui <- fluidPage(
     theme = bslib::bs_theme(version = 5L),
     # add button
     actionButton("show_wizard", "Show wizard"),
+    actionButton("show_shinyalert", "Show shinyalert"),
     wizard(
       modal = TRUE,
       lock_start = TRUE,
