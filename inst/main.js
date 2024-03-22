@@ -60,8 +60,25 @@ $.extend(wizard, {
 
   receiveMessage: function(el, msg) {
     if (msg.type === "lock") {
+      var steps = $(el).find(".wizard-content .wizard-step");
+      var nSteps = steps.length-1;
+      var current = parseInt(steps.filter(".active").data("step"));
+      
+      // if current step is the last step, lock the submit button
+      if (current === nSteps) {
+        $('.wizard-btn.btn.finish').prop('disabled', true);  
+      }
+
       this.lock();
     } else if (msg.type === "unlock") {
+      var steps = $(el).find(".wizard-content .wizard-step");
+      var nSteps = steps.length-1;
+      var current = parseInt(steps.filter(".active").data("step"));
+      
+      // if current step is the last step, **unlock** the submit button
+      if (current === nSteps) {
+        $('.wizard-btn.btn.finish').prop('disabled', false);
+      }
       this.unlock();
     } else if (msg === "reset") {
       this.reset();
