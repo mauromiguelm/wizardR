@@ -88,9 +88,9 @@ $.extend(wizard, {
         // unfortunately we need to manually find the current step, and store it
         // in the DOM, so that we can retrieve it later (in getValue())
         var steps = $(el).find(".wizard-content .wizard-step");
-        var nSteps = steps.length;
+        var nSteps = steps.length-1;
         var current = parseInt(steps.filter(".active").data("step"));
-        var next = (current === nSteps) ? 0 : (current + 1);
+        var next = (current === nSteps) ? current : (current + 1);
 
         $(el).attr("data-active-step", parseInt(next));
 
@@ -98,6 +98,12 @@ $.extend(wizard, {
         $(steps[current]).trigger("hidden");
         $(steps[next]).trigger("shown");
 
+        // if next step is the last step, hide button
+        if (next === nSteps) {
+          document.querySelector('.wizard-buttons button.next').style.display = 'none';
+        } else {
+          document.querySelector('.wizard-buttons button.next').style.display = 'block';
+        }
 
         var title = $(steps[next]).data("title");
 
@@ -117,11 +123,16 @@ $.extend(wizard, {
     ["wz.btn.prev", "wz.nav.backward"].forEach(function(evt) {
       el.addEventListener(evt, function(e) {
         var steps = $(el).find(".wizard-content .wizard-step");
-        var nSteps = steps.length;
+        var nSteps = steps.length-1;
         var current = steps.filter(".active").data("step");
-        var next = (current === nSteps) ? current : (current - 1);
+        var next = (current === 0 ) ? current : (current - 1);
         $(el).attr("data-active-step", parseInt(next));
-        
+
+        if (next === nSteps) {
+          document.querySelector('.wizard-buttons button.next').style.display = 'none';
+        } else {
+          document.querySelector('.wizard-buttons button.next').style.display = 'block';
+        }
 
         $(steps[current]).trigger("hidden");
         $(steps[next]).trigger("shown");
@@ -155,7 +166,6 @@ $.extend(wizard, {
       var current = parseInt(steps.filter(".active").data("step"));
       
       $(el).attr("data-active-step", 0);
-      console.log("resetting wizard")
 
       // inform shiny about step change
       $(steps[current]).trigger("hidden");
