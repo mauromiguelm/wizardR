@@ -15,6 +15,7 @@ ui <- fluidPage(
     theme = bslib::bs_theme(version = 5L),
     # add button
     actionButton("show_wizard", "Show wizard"),
+    actionButton("show_shinyalert", "Show shinyalert"),
     wizard(
       modal = TRUE,
       lock_start = TRUE,
@@ -105,6 +106,14 @@ server <- function(input, output, session) {
   observeEvent(input$reset_wizard, {
     print("reset wizard")
     wizardR::reset("my_modal")
+  })
+
+  observeEvent(input$show_shinyalert, {
+    shinyalert::shinyalert(
+      title = "Hello",
+      text = "This is a shinyalert",
+      type = "success"
+    )
   })
 }
 

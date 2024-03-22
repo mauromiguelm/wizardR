@@ -11,9 +11,17 @@ $.extend(wizard, {
     
     let args = $(el).data("configuration");
 
+    // check if wizard is initialized, return if yes
+    //TODO debug why shinyalert is causing the wizard to re-initialize
+    if ($(el).data("wizard")) {
+      return;
+    }
+
+
     const wizard = new Wizard(args);
 
     wizard.init();
+
 
     // expose wizard.lock function
     this.lock = function() {
@@ -58,6 +66,7 @@ $.extend(wizard, {
     } else if (msg === "reset") {
       this.reset();
     }
+    //TODO understand why message show is not being received
     //  else if (msg.type === "show") {
     //   var modal = bootstrap.Modal.getOrCreateInstance(
     //     document.getElementById('wizard-modal-' + el.id), {}
