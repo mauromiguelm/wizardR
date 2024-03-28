@@ -184,6 +184,9 @@ $.extend(wizard, {
       
       $(el).attr("data-active-step", 0);
 
+      // display next button on wizard reset
+      document.querySelector('.wizard-buttons button.next').style.display = 'block';
+
       // inform shiny about step change
       $(steps[current]).trigger("hidden");
         $(steps[0]).trigger("shown");
