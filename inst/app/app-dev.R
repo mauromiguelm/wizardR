@@ -108,6 +108,10 @@ server <- function(input, output, session) {
     wizardR::reset("my_modal")
   })
 
+  observeEvent(input$my_modal_locked,{
+    print("locked button clicked")
+  })
+
   observeEvent(input$show_shinyalert, {
     shinyalert::shinyalert(
       title = "Hello",

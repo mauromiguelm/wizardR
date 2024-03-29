@@ -61,9 +61,8 @@ wizard_show <- function(
 #' @export
 reset <- function(
     id,
-    session = shiny::getDefaultReactiveDomain()
-    ){
-    if (missing(id)) stop("Missing `id`")
-    
-    session$sendInputMessage(id, "reset")
+    session = shiny::getDefaultReactiveDomain()) {
+  if (missing(id)) stop("Missing `id`")
+
+  session$sendInputMessage(id, "reset")
 }

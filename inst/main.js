@@ -202,6 +202,16 @@ $.extend(wizard, {
 
       callback(false);
     });
+
+
+    // set wz.lock event listener
+    el.addEventListener("wz.lock", function(e) {
+      let counter = $(el).data("lockCounter") || 0;
+      counter++;
+      $(el).data("lockCounter", counter);
+      Shiny.setInputValue(el.id + "_locked", counter);
+      callback(false);
+    });
   },
 
   unsubscribe: function(el) {
