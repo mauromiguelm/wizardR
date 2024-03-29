@@ -69,6 +69,8 @@ jobs:
             git commit ${FILES_TO_COMMIT[*]} -m "Style code (GHA)"
             git pull --ff-only
             git push origin
+            exit 0
           else
             echo "No changes to commit."
+            exit 0
           fi
