@@ -201,13 +201,20 @@ wizard <- function(
 #' @return wizard step html
 #' @export
 wizard_step <- function(
-    ...,
-    step_title = NULL,
-    session = shiny::getDefaultReactiveDomain()) {
+  ...,
+  step_title = NULL,
+  step_id = NULL,
+  session = shiny::getDefaultReactiveDomain()) {
+  
+  if (is.null(step_id)) {
+    stop("Step id must be provided")
+  }
+
   htmltools::div(
     ...,
     class = "wizard-step",
     "data-title" = step_title,
+    "data-step-id" = step_id,
     session = session
   )
 }
